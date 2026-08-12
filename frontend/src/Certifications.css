@@ -1,0 +1,241 @@
+.certs-section {
+    position: relative;
+    width: 100vw;
+    background: radial-gradient(circle at bottom, #110e1a 0%, #050505 80%);
+    padding: 6rem 1rem;
+    z-index: 10;
+}
+
+.certs-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.certs-header h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #fca311, #ff6b6b);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+}
+
+.certs-header p {
+    color: #8c8c94;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Cert card — now an <a> element */
+a.cert-card {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.cert-card {
+    background: rgba(20, 18, 28, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 2.5rem;
+    border-radius: 20px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cert-card.fade-in {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.cert-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(252, 163, 17, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(252, 163, 17, 0.15);
+}
+
+.cert-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.cert-info h3 {
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.4;
+}
+
+.cert-issuer {
+    color: #c5c6c7;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+/* Tags */
+.cert-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.cert-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: rgba(252, 163, 17, 0.1);
+    border: 1px solid rgba(252, 163, 17, 0.25);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    color: #fca311;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.cert-date {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #fca311;
+    font-weight: 600;
+}
+
+/* Link indicator */
+.cert-link-indicator {
+    margin-top: 1.2rem;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.3s ease;
+}
+
+.cert-link-indicator span {
+    font-size: 0.85rem;
+    color: #fca311;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.cert-card:hover .cert-link-indicator {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─── Microsoft Learn Account Section ─── */
+.ms-account-section {
+    max-width: 700px;
+    margin: 3rem auto 0;
+}
+
+.ms-account-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 2.5rem;
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.ms-account-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 164, 239, 0.06) 0%, rgba(255, 185, 0, 0.04) 100%);
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.ms-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    padding: 8px;
+}
+
+.ms-info {
+    flex: 1;
+}
+
+.ms-info h3 {
+    font-size: 1.25rem;
+    color: #fff;
+    margin-bottom: 0.3rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.ms-subtitle {
+    color: #8c8c94;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.ms-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    background: linear-gradient(135deg, #00a4ef, #0078d4);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.ms-link-btn:hover {
+    background: linear-gradient(135deg, #1ab4ff, #1a8ae6);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 164, 239, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .certs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ms-account-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .certs-header h2 {
+        font-size: 2.5rem;
+    }
+}

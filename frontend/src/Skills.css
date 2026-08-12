@@ -1,0 +1,176 @@
+/* ═══════════════════════════════════════════════
+   Skills page layout overrides
+═══════════════════════════════════════════════ */
+.skills-page {
+    align-items: flex-start;
+    padding-top: 5rem;
+}
+
+.skills-content {
+    position: relative;
+    z-index: 10;
+    max-width: 1100px;
+}
+
+.skills-subtitle {
+    font-size: 1.2rem;
+    color: #c5c6c7;
+    text-align: center;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease-out 0.4s forwards;
+}
+
+/* ═══════════════════════════════════════════════
+   Background floating bubbles
+═══════════════════════════════════════════════ */
+.bubbles-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.bubble-bg {
+    position: absolute;
+    bottom: -120px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* NO backdrop-filter — keeps icons sharp */
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 18px color-mix(in srgb, var(--bcolor, #fff) 20%, transparent);
+
+    animation-name: bgFloatUp;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+/* icon inside bubble */
+.bub-icon {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    line-height: 1;
+    opacity: 0.75;
+    filter: drop-shadow(0 0 5px color-mix(in srgb, var(--bcolor, #fff) 55%, transparent));
+}
+
+@keyframes bgFloatUp {
+    0% {
+        transform: translateY(0) scale(0.8) rotate(-4deg);
+        opacity: 0;
+    }
+
+    8% {
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translateY(-52vh) scale(1) rotate(3deg);
+    }
+
+    92% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform: translateY(-115vh) scale(1.1) rotate(-2deg);
+        opacity: 0;
+    }
+}
+
+/* ═══════════════════════════════════════════════
+   Skill category cards grid
+═══════════════════════════════════════════════ */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.skill-category-card {
+    background: linear-gradient(135deg,
+            rgba(30, 27, 46, 0.72) 0%,
+            rgba(12, 10, 18, 0.88) 100%);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 22px;
+    padding: 1.8rem 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.skill-category-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(192, 132, 252, 0.4);
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(192, 132, 252, 0.15);
+}
+
+.category-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #e2e2e2;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    letter-spacing: 0.01em;
+}
+
+/* ═══════════════════════════════════════════════
+   Skill badges inside each card
+═══════════════════════════════════════════════ */
+.skill-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.skill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.38rem 0.85rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #d4d4d4;
+    cursor: default;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    white-space: nowrap;
+}
+
+.skill-badge:hover {
+    background: rgba(192, 132, 252, 0.15);
+    border-color: rgba(192, 132, 252, 0.5);
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+}
+
+.skill-icon {
+    font-size: 1.15rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+/* overflow guard */
+.overflow-hidden {
+    overflow: hidden;
+}

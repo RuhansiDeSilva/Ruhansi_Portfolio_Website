@@ -1,0 +1,150 @@
+.events-section {
+    position: relative;
+    padding: 6rem 1rem;
+    background: radial-gradient(circle at center, #101018 0%, #050505 100%);
+    overflow: hidden;
+    color: #fff;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.events-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.events-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    z-index: 10;
+    position: relative;
+}
+
+.events-header h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ff007f, #c084fc);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.events-header p {
+    color: #a8a8b1;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.slideshow-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 3.5rem 0;
+}
+
+/* Fading edges to prevent harsh cutoffs */
+.slideshow-container::before,
+.slideshow-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 15rem;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.slideshow-container::before {
+    left: 0;
+    background: linear-gradient(to right, #050505 0%, transparent 100%);
+}
+
+.slideshow-container::after {
+    right: 0;
+    background: linear-gradient(to left, #050505 0%, transparent 100%);
+}
+
+.slideshow-track {
+    display: flex;
+    gap: 2.5rem;
+    width: max-content;
+    /* Slides left to right, meaning images enter from left and exit right (starting from -33.33% because of the 3 arrays) */
+    animation: slideRight 35s linear infinite;
+}
+
+.slideshow-track:hover {
+    animation-play-state: paused;
+}
+
+.slide-card {
+    position: relative;
+    height: 380px;
+    width: 550px;
+    border-radius: 20px;
+    background: rgba(12, 10, 20, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-top: 2px solid rgba(192, 132, 252, 0.3);
+    padding: 0.8rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+    cursor: pointer;
+}
+
+.slide-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.6s ease;
+}
+
+.slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 50%);
+    border-radius: 20px;
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.slide-card:hover {
+    transform: translateY(-15px) scale(1.03);
+    border-color: rgba(192, 132, 252, 0.8);
+    box-shadow: 0 20px 50px rgba(192, 132, 252, 0.25);
+}
+
+.slide-card:hover img {
+    transform: scale(1.05);
+}
+
+.slide-card:hover .slide-overlay {
+    opacity: 0;
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(-33.333%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 900px) {
+    .events-header h2 {
+        font-size: 2.5rem;
+    }
+
+    .slide-card {
+        height: 250px;
+        width: 350px;
+    }
+}
