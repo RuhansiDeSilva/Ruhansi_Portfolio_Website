@@ -50,7 +50,7 @@ function App() {
           </div>
         </div>
         <div className="text-section">
-          <h1 className="hero-title">Hi, I'm Ruhansi De Silva</h1>
+          <h1 className="hero-title">Ruhansi De Silva</h1>
           <p className="hero-subtitle">
             Data Science & AI Enthusiast — passionate about transforming complex data into intelligent systems that drive real-world impact. Exploring Machine Learning, Generative AI & beyond.
           </p>
