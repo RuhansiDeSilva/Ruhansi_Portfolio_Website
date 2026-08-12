@@ -10,7 +10,7 @@ export interface Project {
     githubLink: string;
     tags: { label: string; icon: string }[];
     themeColor: string;
-    video?: string;
+    image?: string;
 }
 
 export const projects: Project[] = [
@@ -25,7 +25,7 @@ export const projects: Project[] = [
             { label: 'Data Analysis', icon: 'devicon-jupyter-plain' },
         ],
         themeColor: '#c084fc',
-        video: '/Forcecasting video.mp4'
+        image: '/images/forecasting.png'
     },
     {
         id: 2,
@@ -38,7 +38,7 @@ export const projects: Project[] = [
             { label: 'Stats', icon: 'devicon-rstudio-plain' }
         ],
         themeColor: '#66fcf1',
-        video: '/health care.mp4'
+        image: '/images/insuarance.png'
     },
     {
         id: 3,
@@ -61,7 +61,7 @@ export const projects: Project[] = [
             { label: 'Feature Eng.', icon: 'devicon-python-plain' }
         ],
         themeColor: '#fca311',
-        video: '/attrition.mp4'
+        image: '/images/attrition.png'
     },
     {
         id: 5,
@@ -85,7 +85,7 @@ export const projects: Project[] = [
             { label: 'SQL', icon: 'devicon-postgresql-plain' }
         ],
         themeColor: '#00f576',
-        video: '/web app.mp4'
+        image: '/images/security webapp.png'
     },
     {
         id: 7,
@@ -97,8 +97,7 @@ export const projects: Project[] = [
             { label: 'Zapier', icon: 'devicon-javascript-plain' },
             { label: 'AI Agents', icon: 'devicon-python-plain' }
         ],
-        themeColor: '#ff007f',
-        video: '/email.mp4'
+        themeColor: '#ff007f'
     }
 ];
 

@@ -66,11 +66,11 @@ const ProjectDetails: React.FC = () => {
                     </div>
                 )}
 
-                {project.video && (
+                {project.image && (
                     <div className="pd-video-section">
                         <h2 style={{ color: project.themeColor }}>Demonstration</h2>
                         <div className="pd-video-container" style={{ borderColor: project.themeColor }}>
-                            <video src={project.video} controls autoPlay loop muted className="pd-video" />
+                            <img src={project.image} alt={`${project.name} Demonstration`} className="pd-image" />
                         </div>
                     </div>
                 )}

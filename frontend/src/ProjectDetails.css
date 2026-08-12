@@ -182,7 +182,8 @@
     background: #000;
 }
 
-.pd-video {
+.pd-video,
+.pd-image {
     width: 100%;
     display: block;
 }
