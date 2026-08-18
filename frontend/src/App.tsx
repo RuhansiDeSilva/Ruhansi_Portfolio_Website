@@ -50,18 +50,36 @@ function App() {
           </div>
         </div>
         <div className="text-section">
+          <h2 className="greeting">Hi, I'm</h2>
           <h1 className="hero-title">Ruhansi De Silva</h1>
+          <div className="role-badge">Data Science & AI Enthusiast</div>
           <p className="hero-subtitle">
-            Data Science & AI Enthusiast — passionate about transforming complex data into intelligent systems that drive real-world impact. Exploring Machine Learning, Generative AI & beyond.
+            Passionate about transforming complex data into intelligent systems that drive real-world impact. Exploring Machine Learning, Generative AI & beyond.
           </p>
           <div className="action-buttons">
-            <button className="primary-btn" onClick={() => navigate('/about')}>Get Started</button>
+            <button className="primary-btn" onClick={() => navigate('/about')}>Explore My Journey</button>
           </div>
         </div>
       </div>
       <div className="background-elements">
+        {/* Mesh gradient overlay */}
+        <div className="mesh-gradient"></div>
+        {/* Floating orbs */}
         <div className="orb orb-1"></div>
         <div className="orb orb-2"></div>
+        {/* Animated geometric rings */}
+        <div className="geo-shape geo-ring geo-ring-1"></div>
+        <div className="geo-shape geo-ring geo-ring-2"></div>
+        <div className="geo-shape geo-ring geo-ring-3"></div>
+        {/* Floating dots */}
+        <div className="geo-shape geo-dot geo-dot-1"></div>
+        <div className="geo-shape geo-dot geo-dot-2"></div>
+        <div className="geo-shape geo-dot geo-dot-3"></div>
+        <div className="geo-shape geo-dot geo-dot-4"></div>
+        <div className="geo-shape geo-dot geo-dot-5"></div>
+        {/* Glowing line streaks */}
+        <div className="geo-shape geo-line geo-line-1"></div>
+        <div className="geo-shape geo-line geo-line-2"></div>
       </div>
     </div>
   );

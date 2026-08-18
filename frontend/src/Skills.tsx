@@ -7,6 +7,7 @@ import './Skills.css';
 const categories = [
     {
         title: '💻 Programming Languages',
+        description: 'Used to write production-grade API backend nodes, automated pipeline logic, and custom algorithm prototypes.',
         skills: [
             { label: 'Python', icon: 'devicon-python-plain colored' },
             { label: 'SQL', icon: 'devicon-azuresqldatabase-plain colored' },
@@ -17,6 +18,7 @@ const categories = [
     },
     {
         title: '📊 Data & Analytics',
+        description: 'Leveraged to parse raw customer query records, filter statistical anomalies, and perform explanatory data analysis.',
         skills: [
             { label: 'Data Analysis', icon: 'devicon-jupyter-plain colored' },
             { label: 'EDA', icon: 'devicon-anaconda-original colored' },
@@ -29,6 +31,7 @@ const categories = [
     },
     {
         title: '🤖 ML & Libraries',
+        description: 'Applied to train gradient-boosted estimators, Naive Bayes sentiment classifiers, and student clustering models.',
         skills: [
             { label: 'Scikit-learn', icon: 'devicon-scikitlearn-plain colored' },
             { label: 'Pandas', icon: 'devicon-pandas-plain colored' },
@@ -39,6 +42,7 @@ const categories = [
     },
     {
         title: '⚙️ Frameworks & Tools',
+        description: 'Utilized to construct interactive, glassmorphic UI elements and deploy self-correcting webhook flows.',
         skills: [
             { label: 'FastAPI', icon: 'devicon-fastapi-plain colored' },
             { label: 'Spring Boot', icon: 'devicon-spring-plain colored' },
@@ -127,6 +131,9 @@ const Skills: React.FC = () => {
                             style={{ animationDelay: `${0.3 + ci * 0.15}s` }}
                         >
                             <h2 className="category-title">{cat.title}</h2>
+                            <p className="category-desc" style={{ fontSize: '0.95rem', color: '#a8a8b1', marginBottom: '1.5rem', lineHeight: '1.6' }}>
+                                {cat.description}
+                            </p>
                             <div className="skill-badges">
                                 {cat.skills.map((s) => (
                                     <div className="skill-badge" key={s.label}>

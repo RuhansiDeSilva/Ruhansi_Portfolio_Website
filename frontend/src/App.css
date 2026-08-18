@@ -1,3 +1,6 @@
+/* ═══════════════════════════════════════════════
+   Welcome / Home Page — App.css
+═══════════════════════════════════════════════ */
 .landing-container {
   display: flex;
   align-items: center;
@@ -5,8 +8,11 @@
   min-height: 100vh;
   position: relative;
   z-index: 1;
-  padding: 2rem;
+  padding: 1rem;
+  overflow: hidden;
 }
+
+
 
 .content-wrapper {
   display: flex;
@@ -14,15 +20,15 @@
   justify-content: space-between;
   max-width: 1200px;
   width: 100%;
-  gap: 4rem;
+  gap: 2rem;
   z-index: 2;
-  background: rgba(25, 25, 30, 0.4);
+  background: var(--card-bg-glass);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--card-border);
   border-radius: 24px;
-  padding: 4rem;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  box-shadow: 0 30px 60px var(--shadow-color);
 }
 
 .video-section {
@@ -37,7 +43,7 @@
   position: absolute;
   width: 110%;
   height: 110%;
-  background: linear-gradient(45deg, #66fcf1, #45a29e, #1f2833);
+  background: linear-gradient(45deg, var(--accent), var(--accent-muted), var(--bg-color));
   filter: blur(40px);
   opacity: 0.5;
   z-index: -1;
@@ -49,8 +55,8 @@
   width: 100%;
   max-width: 500px;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-  border: 2px solid rgba(102, 252, 241, 0.3);
+  box-shadow: 0 20px 40px var(--shadow-color);
+  border: 2px solid color-mix(in srgb, var(--accent) 30%, transparent);
   transition: transform 0.3s ease;
 }
 
@@ -69,9 +75,9 @@
   position: absolute;
   bottom: 20px;
   right: 20px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--btn-border);
   backdrop-filter: blur(8px);
   padding: 0.6rem 1.2rem;
   border-radius: 20px;
@@ -84,7 +90,7 @@
 }
 
 .mute-btn:hover {
-  background: rgba(102, 252, 241, 0.4);
+  background: color-mix(in srgb, var(--accent) 40%, transparent);
   transform: translateY(-2px) scale(1.05);
 }
 
@@ -96,27 +102,53 @@
   text-align: left;
 }
 
+.greeting {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  animation: slideUp 0.8s ease-out forwards;
+}
+
 .hero-title {
   font-family: inherit;
   font-size: 4rem;
   font-weight: 800;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
   line-height: 1.1;
-  background: linear-gradient(90deg, #ffffff, #66fcf1);
+  background: var(--title-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: slideUp 0.8s ease-out forwards;
+  animation: slideUp 0.8s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.role-badge {
+  display: inline-flex;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 1px solid var(--tag-border);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: slideUp 0.8s ease-out 0.2s forwards;
+  width: fit-content;
 }
 
 .hero-subtitle {
   font-family: inherit;
   font-size: 1.2rem;
-  color: #c5c6c7;
+  color: var(--text-secondary);
   margin-bottom: 2.5rem;
   line-height: 1.6;
   opacity: 0;
-  animation: slideUp 0.8s ease-out 0.2s forwards;
+  animation: slideUp 0.8s ease-out 0.3s forwards;
 }
 
 .action-buttons {
@@ -139,28 +171,48 @@ button {
 }
 
 .primary-btn {
-  background: #66fcf1;
-  color: #0b0c10;
-  box-shadow: 0 0 20px rgba(102, 252, 241, 0.4);
+  background: linear-gradient(135deg, var(--accent), var(--accent-muted));
+  color: #ffffff;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 40%, transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: skewX(-20deg);
+  transition: all 0.5s ease;
+}
+
+.primary-btn:hover::after {
+  left: 150%;
 }
 
 .primary-btn:hover {
-  background: #45a29e;
-  box-shadow: 0 0 30px rgba(69, 162, 158, 0.6);
-  transform: translateY(-2px);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--accent) 60%, transparent);
+  transform: translateY(-3px) scale(1.02);
 }
 
 .secondary-btn {
   background: transparent;
-  color: #66fcf1;
-  border: 2px solid #66fcf1;
+  color: var(--accent);
+  border: 2px solid var(--accent);
 }
 
 .secondary-btn:hover {
-  background: rgba(102, 252, 241, 0.1);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
   transform: translateY(-2px);
 }
 
+/* ═══════════════════════════════════════════════
+   Modern Animated Background
+═══════════════════════════════════════════════ */
 .background-elements {
   position: absolute;
   top: 0;
@@ -172,29 +224,261 @@ button {
   pointer-events: none;
 }
 
+/* Floating orbs */
 .orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.4;
-  animation: float 10s infinite ease-in-out alternate;
 }
 
 .orb-1 {
   width: 400px;
   height: 400px;
-  background: #1f2833;
+  background: var(--orb-color-1);
   top: -100px;
   left: -100px;
+  animation: floatOrb1 14s infinite ease-in-out;
 }
 
 .orb-2 {
   width: 500px;
   height: 500px;
-  background: rgba(69, 162, 158, 0.4);
+  background: var(--orb-color-2);
   bottom: -150px;
   right: -100px;
+  animation: floatOrb2 18s infinite ease-in-out;
+}
+
+/* Additional animated geometric shapes */
+.geo-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.geo-ring {
+  border: 2px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  background: transparent;
+  animation: ringPulse 8s infinite ease-in-out;
+}
+
+.geo-ring-1 {
+  width: 200px;
+  height: 200px;
+  top: 15%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.geo-ring-2 {
+  width: 120px;
+  height: 120px;
+  bottom: 20%;
+  left: 8%;
+  animation-delay: -3s;
+}
+
+.geo-ring-3 {
+  width: 80px;
+  height: 80px;
+  top: 60%;
+  right: 25%;
   animation-delay: -5s;
+}
+
+/* Floating dots */
+.geo-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: dotFloat 12s infinite ease-in-out;
+}
+
+.geo-dot-1 {
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.geo-dot-2 {
+  top: 70%;
+  right: 18%;
+  animation-delay: -4s;
+}
+
+.geo-dot-3 {
+  top: 40%;
+  left: 75%;
+  animation-delay: -8s;
+}
+
+.geo-dot-4 {
+  bottom: 25%;
+  left: 35%;
+  animation-delay: -2s;
+}
+
+.geo-dot-5 {
+  top: 10%;
+  right: 40%;
+  animation-delay: -6s;
+}
+
+/* Glowing line streaks */
+.geo-line {
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  border-radius: 2px;
+  animation: lineSlide 10s infinite ease-in-out;
+}
+
+.geo-line-1 {
+  top: 30%;
+  left: -100px;
+  animation-delay: 0s;
+  transform: rotate(-15deg);
+}
+
+.geo-line-2 {
+  top: 65%;
+  right: -100px;
+  animation-delay: -5s;
+  transform: rotate(20deg);
+}
+
+/* Mesh gradient overlay */
+.mesh-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, color-mix(in srgb, var(--accent) 8%, transparent) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, color-mix(in srgb, var(--accent-muted) 6%, transparent) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, color-mix(in srgb, var(--accent) 5%, transparent) 0%, transparent 50%);
+  animation: meshShift 20s infinite ease-in-out alternate;
+  opacity: 0.8;
+}
+
+/* ═══════════════════════════════════════════════
+   Animation Keyframes
+═══════════════════════════════════════════════ */
+@keyframes floatOrb1 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(60px, 40px) scale(1.1);
+  }
+
+  50% {
+    transform: translate(30px, 80px) scale(0.95);
+  }
+
+  75% {
+    transform: translate(-20px, 50px) scale(1.05);
+  }
+}
+
+@keyframes floatOrb2 {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate(-50px, -30px) scale(1.08);
+  }
+
+  50% {
+    transform: translate(-80px, 20px) scale(1);
+  }
+
+  75% {
+    transform: translate(-30px, -60px) scale(1.12);
+  }
+}
+
+@keyframes ringPulse {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.6) rotate(0deg);
+  }
+
+  20% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 0.2;
+    transform: scale(1.2) rotate(180deg);
+  }
+
+  80% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes dotFloat {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+
+  10% {
+    opacity: 0.6;
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: translateY(-40px) scale(1.5);
+  }
+
+  90% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes lineSlide {
+
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateX(0) scaleX(0.5);
+  }
+
+  30% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: translateX(100vw) scaleX(1.5);
+  }
+
+  70% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes meshShift {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
 }
 
 @keyframes pulse {
@@ -245,6 +529,14 @@ button {
     text-align: center;
   }
 
+  .role-badge {
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .greeting {
+    text-align: center;
+  }
+
   .hero-subtitle {
     text-align: center;
   }
@@ -252,4 +544,5 @@ button {
   .action-buttons {
     justify-content: center;
   }
+
 }

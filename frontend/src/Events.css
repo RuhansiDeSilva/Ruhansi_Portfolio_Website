@@ -1,9 +1,9 @@
 .events-section {
     position: relative;
-    padding: 6rem 1rem;
-    background: radial-gradient(circle at center, #101018 0%, #050505 100%);
+    padding: 3rem 1rem;
+    background: var(--section-bg);
     overflow: hidden;
-    color: #fff;
+    color: var(--text-primary);
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -24,7 +24,7 @@
 .events-header h2 {
     font-size: 3.5rem;
     font-weight: 800;
-    background: linear-gradient(90deg, #ff007f, #c084fc);
+    background: var(--title-gradient-pink);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -33,7 +33,7 @@
 }
 
 .events-header p {
-    color: #a8a8b1;
+    color: var(--muted-text);
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -60,12 +60,12 @@
 
 .slideshow-container::before {
     left: 0;
-    background: linear-gradient(to right, #050505 0%, transparent 100%);
+    background: linear-gradient(to right, var(--edge-fade-color) 0%, transparent 100%);
 }
 
 .slideshow-container::after {
     right: 0;
-    background: linear-gradient(to left, #050505 0%, transparent 100%);
+    background: linear-gradient(to left, var(--edge-fade-color) 0%, transparent 100%);
 }
 
 .slideshow-track {
@@ -85,11 +85,11 @@
     height: 380px;
     width: 550px;
     border-radius: 20px;
-    background: rgba(12, 10, 20, 0.9);
-    border: 2px solid rgba(255, 255, 255, 0.08);
+    background: var(--slide-card-bg);
+    border: 2px solid var(--slide-card-border);
     border-top: 2px solid rgba(192, 132, 252, 0.3);
     padding: 0.8rem;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 15px 35px var(--card-shadow);
     overflow: hidden;
     flex-shrink: 0;
     transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
@@ -107,7 +107,7 @@
 .slide-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 50%);
+    background: var(--slide-overlay-gradient);
     border-radius: 20px;
     opacity: 0.5;
     transition: opacity 0.4s ease;

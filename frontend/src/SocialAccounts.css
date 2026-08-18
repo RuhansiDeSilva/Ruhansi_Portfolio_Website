@@ -1,8 +1,8 @@
 .social-section {
     position: relative;
     width: 100vw;
-    background: #050505;
-    padding: 6rem 1rem 8rem;
+    background: var(--social-bg);
+    padding: 3rem 1rem 4rem;
     z-index: 10;
     text-align: center;
 }
@@ -15,7 +15,7 @@
     font-size: 3.5rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
-    background: linear-gradient(90deg, #4ea8de, #c084fc);
+    background: var(--title-gradient-blue);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -23,7 +23,7 @@
 }
 
 .social-header p {
-    color: #8c8c94;
+    color: var(--muted-text);
     font-size: 1.1rem;
     letter-spacing: 1px;
 }
@@ -42,17 +42,17 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem 2.5rem;
-    background: rgba(20, 18, 28, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--social-btn-bg);
+    border: 1px solid var(--social-btn-border);
     border-radius: 40px;
-    color: #fff;
+    color: var(--social-btn-text);
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: 600;
     opacity: 0;
     transform: translateY(40px);
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 25px var(--social-btn-shadow);
 }
 
 .social-btn.slide-up-social {
@@ -68,11 +68,12 @@
     background: #e2e2e2;
     color: #050505;
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .social-btn.linkedin:hover {
     background: #0077b5;
+    color: #fff;
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0, 119, 181, 0.4);
     border-color: #0077b5;
@@ -80,6 +81,7 @@
 
 .social-btn.email:hover {
     background: #c084fc;
+    color: #fff;
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(192, 132, 252, 0.4);
     border-color: #c084fc;
@@ -87,6 +89,7 @@
 
 .social-btn.instagram:hover {
     background: #E1306C;
+    color: #fff;
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(225, 48, 108, 0.4);
     border-color: #E1306C;
@@ -94,6 +97,7 @@
 
 .social-btn.phone:hover {
     background: #4EA8DE;
+    color: #fff;
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(78, 168, 222, 0.4);
     border-color: #4EA8DE;

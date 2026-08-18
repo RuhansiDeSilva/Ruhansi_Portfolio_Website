@@ -12,7 +12,7 @@
     left: 20px;
     height: 100%;
     width: 2px;
-    background: rgba(102, 252, 241, 0.3);
+    background: var(--timeline-line);
 }
 
 .timeline-item {
@@ -46,9 +46,9 @@
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #66fcf1;
-    border: 3px solid #0b0c10;
-    box-shadow: 0 0 10px rgba(102, 252, 241, 0.8);
+    background: var(--timeline-dot);
+    border: 3px solid var(--timeline-dot-border);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--timeline-dot) 80%, transparent);
     transition: all 0.3s ease;
 }
 
@@ -56,26 +56,27 @@
     transform: scale(1.5);
     background: #c084fc;
     box-shadow: 0 0 15px rgba(192, 132, 252, 0.8);
+    border-color: var(--timeline-dot-border);
 }
 
 .timeline-content {
-    background: rgba(25, 25, 30, 0.6);
+    background: var(--timeline-content-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--timeline-content-border);
     padding: 1.5rem;
     border-radius: 12px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .timeline-content:hover {
     transform: translateX(10px);
-    border-color: rgba(102, 252, 241, 0.4);
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
 }
 
 .timeline-content h3 {
     margin: 0;
     font-size: 1.5rem;
-    color: #fff;
+    color: var(--text-primary);
     margin-bottom: 5px;
 }
 
@@ -88,7 +89,7 @@
 }
 
 .timeline-content p {
-    color: #c5c6c7;
+    color: var(--text-secondary);
     margin: 0;
     line-height: 1.6;
 }
