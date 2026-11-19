@@ -2714,7 +2714,7 @@
             <div class="projects-filter-bar" id="projectsFilterBar">
                 <button class="proj-filter-btn active" onclick="filterProjects('all', this)">
                     <span>All Projects</span>
-                    <span class="proj-filter-count">8</span>
+                    <span class="proj-filter-count">9</span>
                 </button>
                 <button class="proj-filter-btn" onclick="filterProjects('ml', this)">
                     <span>Machine Learning</span>
@@ -2730,7 +2730,7 @@
                 </button>
                 <button class="proj-filter-btn" onclick="filterProjects('analytics', this)">
                     <span>Data Analytics</span>
-                    <span class="proj-filter-count">1</span>
+                    <span class="proj-filter-count">2</span>
                 </button>
             </div>
 
@@ -3261,6 +3261,68 @@
         // 8.5 PROJECTS SHOWCASE & INTERACTIVE DASHBOARD
         // ==========================================
         const portfolioProjects = [
+            {
+                id: 9,
+                name: 'MedCost Insight',
+                brandFirst: 'MedCost',
+                brandHighlight: 'Insight',
+                brandIcon: 'fa-solid fa-hospital-user',
+                bannerSub: 'Medical Insurance Cost Analysis Using Statistical Modelling',
+                cardTitle: 'MedCost Insight — Medical Insurance Statistical Modelling & Dashboard',
+                catchyTitle: 'MedCost Insight: Transforming Medical Insurance Data into Smarter Business Decisions',
+                description: 'Statistical consultancy project (IT3081) analyzing 7,500 calibrated Sri Lankan medical expenditure records in R. Evaluates hypothesis testing, OLS, Ridge, LASSO (held-out R² = 0.8345, MAE = LKR 56,765), Elastic Net, PCA, Bayesian Linear Regression (94.17% posterior interval coverage), and an interactive decision-support dashboard.',
+                githubLink: 'https://github.com/Thisurika/MedCost-Insight',
+                repoDisplay: 'github.com/Thisurika/MedCost-Insight',
+                linkedinArticleUrl: 'https://www.linkedin.com/pulse/med-cost-insight-medical-insurance-analysis-using-ruhansi-de-silva-rmudc/',
+                videoDemoUrl: 'assets/images/medcost_demo.mp4',
+                category: 'analytics',
+                categoryBadge: 'STATISTICAL MODELLING',
+                categoryLabel: 'Statistical Modelling & Decision Support',
+                techLine: 'R · LASSO & Ridge Regression · Bayesian Modelling · PCA · ANOVA & Hypothesis Testing · Decision Dashboard',
+                tags: [
+                    { label: 'R', icon: 'devicon-r-plain' },
+                    { label: 'LASSO / Ridge', icon: 'fa-solid fa-chart-line' },
+                    { label: 'Bayesian', icon: 'fa-solid fa-chart-area' },
+                    { label: 'PCA', icon: 'fa-solid fa-compress' },
+                    { label: 'ANOVA', icon: 'fa-solid fa-scale-balanced' }
+                ],
+                features: [
+                    { icon: 'fa-solid fa-bullseye', label: 'LASSO R² = 0.8345' },
+                    { icon: 'fa-solid fa-Smoking'.toLowerCase(), label: '2.31× Smoker Cost Gap' },
+                    { icon: 'fa-solid fa-chart-column', label: '94.2% Bayesian Coverage' }
+                ],
+                mockupKicker: '7,500 POLICYHOLDERS · LASSO R² = 0.8345',
+                mockupHeading: 'Smokers Cost <span>2.31× Non-Smokers</span>',
+                mockupSub: 'Interactive decision-support dashboard: Overview, Cost Drivers, Planning & Model Quality across 7,500 records.',
+                gaugeValue: '0.835',
+                gaugeLabel: 'Held-out R²',
+                themeColor: '#14b8a6',
+                image: 'assets/images/medcost_poster.jpg',
+                challengeText: 'Healthcare expenditure varies considerably across individuals (mean LKR 329,316; median LKR 282,095; right-skewed with skewness ≈ 1.04), making accurate cost estimation, high-cost outlier monitoring, and financial planning challenging for insurance providers without transparent, interpretable statistical evidence.',
+                challengeHighlights: [
+                    '7,500 calibrated synthetic Sri Lankan medical expenditure records across 22 original variables',
+                    'Right-skewed annual expenditure distribution with 165 high-cost IQR outliers (2.20%)',
+                    'Need for leakage-aware pre-year expenditure prediction and uncertainty quantification'
+                ],
+                solutionText: 'Conducted a 12-task statistical modelling consultancy study in R comparing OLS, Ridge, LASSO, Elastic Net, PCA dimensionality reduction (47 encoded columns → 27–34 components), Bayesian Linear Regression, and Naïve Bayes high-cost classification, paired with the MedCost Insight interactive dashboard.',
+                solutionContributions: [
+                    'Selected LASSO Regression via 5-fold cross-validation (CV RMSE: LKR 70,556; Held-out Test R² = 0.8345, MAE = LKR 56,765, RMSE = LKR 74,073 on 1,500 test records)',
+                    'Established key statistical associations: smokers recorded 2.31× higher average annual expenditure than non-smokers, alongside significant insurance-plan tier differences',
+                    'Demonstrated that non-PCA LASSO outperformed PCA + Ridge pipelines (~16% lower RMSE) and achieved 94.17% empirical coverage using 95% Bayesian posterior predictive intervals'
+                ],
+                implementationText: 'Implemented in R across 12 structured consultancy tasks: EDA, parametric/non-parametric hypothesis testing (ANOVA, Kruskal-Wallis, t-tests), leakage-free 6,000/1,500 train-test split, 5-fold CV regularized regression, CRD/RCBD experimental design, PCA, Bayesian credible/predictive intervals, and the MedCost Insight dashboard.',
+                implementationHighlights: [
+                    'LASSO Regularized Regression (R² = 0.8345 on 1,500 unseen test records)',
+                    'Bayesian Posterior Predictive Intervals (94.17% validation coverage)',
+                    'Published LinkedIn Pulse Consultancy Report & Interactive Dashboard Video'
+                ],
+                impactText: 'Provides human analysts with an interpretable decision-support framework connecting statistical evidence, prediction error warnings, and scenario-based cost forecasting.',
+                impactMetrics: [
+                    { value: '0.8345', label: 'Held-Out Test R² (LASSO Model)' },
+                    { value: '2.31×', label: 'Smoker vs Non-Smoker Cost Ratio' },
+                    { value: '7,500', label: 'Policyholder Records Analyzed' }
+                ]
+            },
             {
                 id: 8,
                 name: 'DataCo Supply Chain ML Portal',
@@ -3847,6 +3909,12 @@
                     ? `onclick="window.open('${proj.liveDemoUrl}', '_blank')"`
                     : `onclick="openProjectDashboard(${proj.id})"`;
 
+                const linkedinFooterLink = proj.linkedinArticleUrl
+                    ? `<a href="${proj.linkedinArticleUrl}" target="_blank" rel="noopener noreferrer" class="vp-footer-link" title="Read Published LinkedIn Pulse Article">
+                           <i class="fa-brands fa-linkedin"></i> LinkedIn Article <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                       </a>`
+                    : '';
+
                 return `
                     <article class="venuja-proj-card" data-category="${proj.category}">
                         <!-- Top Graphical Showcase Banner (DengueRisk Reference Style) -->
@@ -3910,8 +3978,9 @@
                             <div class="vp-card-tech-line">${proj.techLine}</div>
                             <p class="vp-card-desc">${proj.description}</p>
 
-                            <div class="vp-card-footer">
+                            <div class="vp-card-footer" style="gap:12px; flex-wrap:wrap;">
                                 ${viewLiveAction}
+                                ${linkedinFooterLink}
                                 <a href="${proj.githubLink}" target="_blank" rel="noopener noreferrer" class="vp-footer-link">
                                     GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </a>
@@ -3963,6 +4032,59 @@
         }
 
         function getSimulatorHtml(proj) {
+            if (proj.id === 9) {
+                return `
+                    <div class="pd-sim-box" style="padding:20px;">
+                        <div class="pd-sim-head" style="margin-bottom:14px; flex-wrap:wrap; gap:10px;">
+                            <h4><i class="fa-solid fa-circle-play" style="color:#14b8a6;"></i> MedCost Insight — Interactive Dashboard Video Walkthrough</h4>
+                            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                                <span class="pd-hero-badge" style="margin:0;">LASSO R² = 0.8345 · 7,500 Policyholders</span>
+                                <a href="${proj.linkedinArticleUrl}" target="_blank" rel="noopener noreferrer" class="pd-tab-trigger" style="text-decoration:none; padding:6px 12px; font-size:0.78rem; background:#0a66c2; color:#fff; border-color:#0a66c2;">
+                                    <i class="fa-brands fa-linkedin"></i> Read LinkedIn Pulse Article <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.14); background:#05080f;">
+                            <video controls autoplay muted playsinline poster="assets/images/medcost_poster.jpg" style="width:100%; max-height:540px; display:block;">
+                                <source src="${proj.videoDemoUrl}" type="video/mp4">
+                                Your browser does not support HTML5 video.
+                            </video>
+                        </div>
+
+                        <!-- Attached LinkedIn Article Overview Card -->
+                        <div class="pd-info-card" style="margin-top:18px; border-color:rgba(10,102,194,0.45); background:linear-gradient(145deg, rgba(10,102,194,0.12) 0%, rgba(18,25,41,0.95) 100%);">
+                            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+                                <div>
+                                    <span style="font-family:var(--font-mono); font-size:0.7rem; color:#38bdf8; text-transform:uppercase; font-weight:700;">
+                                        <i class="fa-brands fa-linkedin"></i> Featured LinkedIn Pulse Publication · IT3081 Statistical Modelling
+                                    </span>
+                                    <h4 style="margin:6px 0 4px;">Med Cost Insight | Medical Insurance Cost Analysis Using Statistical Modelling</h4>
+                                    <p style="margin:0; font-size:0.85rem; color:#cbd5e1;">
+                                        Full consultancy breakdown covering EDA across 7,500 records, smoking &amp; insurance-plan hypothesis tests (2.31× smoker expenditure ratio), LASSO regression (R² = 0.8345, MAE = LKR 56,765), PCA vs non-PCA evaluation, and Bayesian posterior predictive intervals (94.17% coverage).
+                                    </p>
+                                </div>
+                                <a href="${proj.linkedinArticleUrl}" target="_blank" rel="noopener noreferrer" class="pd-tab-trigger" style="text-decoration:none; background:#0a66c2; color:#fff; border-color:#0a66c2; white-space:nowrap;">
+                                    <i class="fa-brands fa-linkedin"></i> Open Article on LinkedIn ↗
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Key Statistical Diagnostic Plots from GitHub Repo -->
+                        <div class="pd-two-cols" style="margin-top:18px;">
+                            <div class="pd-info-card">
+                                <h4><i class="fa-solid fa-chart-scatter" style="color:#14b8a6;"></i> Task 05: LASSO Actual vs Predicted &amp; 5-Fold CV</h4>
+                                <img src="assets/images/05_actual_vs_predicted.png" alt="LASSO Actual vs Predicted" style="width:100%; border-radius:6px; margin-bottom:10px; background:#fff; padding:4px;">
+                                <img src="assets/images/07_cv_model_comparison.png" alt="5-Fold CV Model Comparison" style="width:100%; border-radius:6px; background:#fff; padding:4px;">
+                            </div>
+                            <div class="pd-info-card">
+                                <h4><i class="fa-solid fa-chart-area" style="color:#38bdf8;"></i> Task 07 &amp; 08: PCA Scree &amp; Bayesian Credible Intervals</h4>
+                                <img src="assets/images/08_PCA_scree_and_cumulative_variance.png" alt="PCA Scree Plot" style="width:100%; border-radius:6px; margin-bottom:10px; background:#fff; padding:4px;">
+                                <img src="assets/images/07_Bayesian_Coefficient_Intervals.png" alt="Bayesian Coefficient Credible Intervals" style="width:100%; border-radius:6px; background:#fff; padding:4px;">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
             if (proj.id === 8) {
                 return `
                     <div class="pd-sim-box" style="padding:18px;">
@@ -4231,7 +4353,7 @@
 
             let tabBodyHtml = '';
             if (activeDashTab === 'simulator') {
-                const screenshotHtml = proj.image ? `
+                const screenshotHtml = (proj.image && !proj.videoDemoUrl) ? `
                     <div class="pd-info-card" style="margin-top:20px;">
                         <h4><i class="fa-solid fa-desktop" style="color:#38bdf8;"></i> Production System Interface Preview</h4>
                         <img src="${proj.image}" alt="${proj.name}" style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-top:8px;">
@@ -4279,6 +4401,10 @@
                         <span>Portfolio</span> / <span>Projects</span> / <strong>${proj.name}</strong>
                     </div>
                     <div class="pd-modal-top-actions">
+                        ${proj.linkedinArticleUrl ? `
+                        <a href="${proj.linkedinArticleUrl}" target="_blank" rel="noopener noreferrer" class="pd-tab-trigger" style="text-decoration:none; background:#0a66c2; color:#fff; border-color:#0a66c2;">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn Article
+                        </a>` : ''}
                         <a href="${proj.githubLink}" target="_blank" rel="noopener noreferrer" class="pd-tab-trigger" style="text-decoration:none;">
                             <i class="fa-brands fa-github"></i> View Source
                         </a>
