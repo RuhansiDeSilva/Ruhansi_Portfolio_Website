@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataCo Supply Chain ML & Shipment Prioritization — Interactive Project Portal</title>
+  <base href="/dataco-portal/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar (No GP65 Logo) -->
+  <header class="top-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>DataCo Supply Chain — ML &amp; Shipment Prioritization</h1>
+          <p>Interactive Notebook Portal • 12 Stages, 509 Cells, 84 Charts &amp; Executive Summary</p>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <button class="nav-btn active" data-view="overview">
+          <span>🏠 Overview</span>
+        </button>
+        <button class="nav-btn" data-view="summary">
+          <span>📋 Project Summary</span>
+        </button>
+        <button class="nav-btn" data-view="stages">
+          <span>🧭 12 Stages</span>
+          <span class="nav-count">12</span>
+        </button>
+        <button class="nav-btn" data-view="simulator">
+          <span>🎛️ Risk Simulator</span>
+        </button>
+        <button class="nav-btn" data-view="gallery">
+          <span>📊 Charts Gallery</span>
+          <span class="nav-count">84</span>
+        </button>
+        <button class="nav-btn" data-view="explorer">
+          <span>💻 Code Explorer</span>
+          <span class="nav-count">509</span>
+        </button>
+      </nav>
+
+      <button id="themeToggleBtn" class="theme-toggle">☀️ Light Mode</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- ============================================================
+         VIEW 1: EXECUTIVE OVERVIEW & ARCHITECTURE
+         ============================================================ -->
+    <section id="view-overview" class="view-section active">
+      <div class="hero-banner">
+        <div class="hero-tags">
+          <span class="tag emerald">180,519 ORDER-ITEM RECORDS</span>
+          <span class="tag purple">65,752 UNIQUE ORDERS</span>
+          <span class="tag">5-MODEL SOFT-VOTING ENSEMBLE</span>
+          <span class="tag amber">DUAL-LENS DECISION SYSTEM</span>
+        </div>
+        <h2>DataCo Supply Chain Late-Delivery Prediction &amp; Shipment Prioritization</h2>
+        <p>
+          Welcome to the interactive project portal. This website translates the entire 509-cell Jupyter Notebook into a friendly, easy-to-navigate visual experience. Explore how <strong>Lens 1 (Machine Learning Late-Delivery Risk Prediction)</strong> and <strong>Lens 2 (Order-Level Risk Profiling &amp; Business Value Prioritization)</strong> work together to identify high-risk shipments at checkout and focus operations teams on urgent, high-value orders.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="switchView('summary')">📋 Read Full Project Summary →</button>
+          <button class="btn-secondary" onclick="switchView('stages')">🧭 Step-by-Step 12 Stages</button>
+          <button class="btn-secondary" onclick="switchView('simulator')">🎛️ Try Interactive Risk Simulator</button>
+          <button class="btn-secondary" onclick="switchView('gallery')">📊 View All 84 Charts</button>
+        </div>
+      </div>
+
+      <!-- Plain-English Quick Orientation Callout -->
+      <div class="friendly-callout">
+        <div class="friendly-callout-title">✨ Quick Guide: How to Explore This Project</div>
+        <p>
+          New to this project? Start with the <strong>📋 Project Summary</strong> tab for a complete, plain-English report of our methodology, findings, and limitations. Want to see how each step was built? Click any card below or open <strong>🧭 12 Stages</strong> for plain-English takeaways, benchmark tables, and charts.
+        </p>
+      </div>
+
+      <!-- Top KPI Summary Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Dataset Scale &amp; Grain</div>
+          <div class="kpi-value">180,519</div>
+          <div class="kpi-sub">Order items across 65,752 unique orders (~2.75 items/order)</div>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:100%;"></div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Feature Selection</div>
+          <div class="kpi-value">611 → 100</div>
+          <div class="kpi-sub">83.63% noise reduction via 5-Fold Group CV (+0.0366 ROC-AUC)</div>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:83.6%;"></div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Lens 1 (Item-Line Test)</div>
+          <div class="kpi-value">71.69%</div>
+          <div class="kpi-sub">Accuracy • 84.81% Precision • 0.7675 ROC-AUC (13,378 lines)</div>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:71.7%;"></div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Lens 2 (Unique-Order Test)</div>
+          <div class="kpi-value">72.00%</div>
+          <div class="kpi-sub">Accuracy • 85.25% Precision • 0.7734 ROC-AUC (4,932 orders)</div>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:72.0%;"></div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">High-Risk Band Accuracy</div>
+          <div class="kpi-value">85.28%</div>
+          <div class="kpi-sub">Observed late rate in High Risk tier (vs 9.65% in Low Risk)</div>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:85.3%;"></div></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Urgent Priority Escalation</div>
+          <div class="kpi-value">575 Orders</div>
+          <div class="kpi-sub">Only 11.66% of workload • 83.83% late • 20.63% of total value</div>
+          <div class="progress-bar-track"><div class="progress-bar-fill" style="width:83.8%;"></div></div>
+        </div>
+      </div>
+
+      <!-- Dual-Lens System Architecture -->
+      <div class="section-header">
+        <div>
+          <h3>How the Two-Part System Works (Lens 1 + Lens 2)</h3>
+          <p>Combining machine learning probability prediction at checkout with business-value order prioritization.</p>
+        </div>
+      </div>
+
+      <div class="dual-lens-grid">
+        <div class="lens-card lens-1">
+          <h3>
+            <span>Lens 1 — Late-Delivery Risk Prediction (Item-Line Level)</span>
+            <span class="tag">Cells 311 – 493</span>
+          </h3>
+          <p>
+            Predicts the probability that an individual order-line shipment will be delivered late at the exact moment the order is placed. Combines five tuned classifiers via equal-weight (20% each) soft voting: <strong>Logistic Regression, Decision Tree, Random Forest, LightGBM, and Calibrated Linear SVM</strong> on the Top 100 selected features.
+          </p>
+          <div class="lens-metrics">
+            <div class="mini-stat">
+              <span>Operating Threshold</span>
+              <strong>0.50</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Test Precision</span>
+              <strong>84.81%</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Test Confusion Matrix</span>
+              <strong>4,326 TP / 5,265 TN</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="lens-card lens-2">
+          <h3>
+            <span>Lens 2 — Risk Profiling &amp; Business Prioritization (Order Level)</span>
+            <span class="tag emerald">Cells 494 – 508</span>
+          </h3>
+          <p>
+            Groups item-line probabilities by <code>Order Id</code> (averaging probabilities across all items in an order) and calculates complete order dollar value. Combines <strong>Risk Bands (&lt;0.30 Low, 0.30–0.65 Medium, ≥0.65 High)</strong> with training-derived <strong>Monetary Value Quantiles ($314.55 &amp; $625.71)</strong> to assign <strong>Low, Medium, or Urgent</strong> operational priority.
+          </p>
+          <div class="lens-metrics">
+            <div class="mini-stat">
+              <span>Unique Test Orders</span>
+              <strong>4,932 Orders</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Test Order Value</span>
+              <strong>$2,436,978.03</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Urgent Escalation Rate</span>
+              <strong>83.83% Late (575)</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12-Stage Interactive Pipeline Grid -->
+      <div class="section-header">
+        <div>
+          <h3>Complete 12-Stage Notebook Pipeline Map (Cells 0 – 508)</h3>
+          <p>Click any stage card below to open its plain-English summary, activities, data tables, and visual charts.</p>
+        </div>
+      </div>
+
+      <div id="overviewPipelineGrid" class="pipeline-grid"></div>
+    </section>
+
+    <!-- ============================================================
+         VIEW 2: PROJECT SUMMARY (NEW DEDICATED TAB)
+         ============================================================ -->
+    <section id="view-summary" class="view-section">
+      <div class="hero-banner">
+        <div class="hero-tags">
+          <span class="tag emerald">EXECUTIVE PROJECT SUMMARY</span>
+          <span class="tag">END-TO-END SYNTHESIS</span>
+          <span class="tag purple">LENS 1 + LENS 2 INTEGRATION</span>
+        </div>
+        <h2>Executive Summary — DataCo Supply Chain Late-Delivery Prediction &amp; Shipment Prioritization</h2>
+        <p>
+          A comprehensive, easy-to-read summary of the entire project—covering the business problem, data hygiene and leakage prevention, model selection, final test results, operational prioritization impact, error analysis discoveries, and real-world limitations.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="switchView('stages')">Explore Detailed 12 Stages →</button>
+          <button class="btn-secondary" onclick="switchView('simulator')">Test Rules in Risk Simulator</button>
+          <button class="btn-secondary" onclick="jumpToCellsInExplorer(12, 507)">View Raw Summary Cell (#507)</button>
+        </div>
+      </div>
+
+      <!-- 6-Step At-a-Glance Visual Journey -->
+      <div class="section-header">
+        <div>
+          <h3>At-a-Glance: How the Project Was Built in 6 Key Steps</h3>
+          <p>From 180,519 raw e-commerce rows to a focused 575-order urgent escalation list.</p>
+        </div>
+      </div>
+
+      <div class="summary-journey-grid">
+        <div class="journey-step-card">
+          <span class="journey-step-num">Step 1 • Data &amp; EDA</span>
+          <h4>180,519 Order Items</h4>
+          <p>Analyzed 65,752 unique orders (~2.75 items/order) across 5 global markets. Found 54.83% of all items arrive late and Shipping Mode strongly drives delay risk.</p>
+        </div>
+        <div class="journey-step-card">
+          <span class="journey-step-num">Step 2 • Leakage Audit</span>
+          <h4>Strict Checkout Cutoff</h4>
+          <p>Removed post-order leakage (real shipping days, delivery status, canceled/fraud order status), PII (names, emails, passwords), and exact financial duplicates.</p>
+        </div>
+        <div class="journey-step-card">
+          <span class="journey-step-num">Step 3 • Group Split &amp; Top 100</span>
+          <h4>Zero Order Overlap</h4>
+          <p>Split strictly by Order ID (85% Train / 7.5% Val / 7.5% Test). Selected the Top 100 encoded features via 5-Fold Group CV, cutting 83.6% of noise (+0.0366 AUC).</p>
+        </div>
+        <div class="journey-step-card">
+          <span class="journey-step-num">Step 4 • Lens 1 Ensemble</span>
+          <h4>5 Tuned Models Vote</h4>
+          <p>Combined tuned Logistic Regression, Decision Tree, Random Forest, LightGBM, and Calibrated Linear SVM (20% weight each) at a balanced 0.50 threshold.</p>
+        </div>
+        <div class="journey-step-card">
+          <span class="journey-step-num">Step 5 • Lens 2 Order Triage</span>
+          <h4>Risk × Dollar Value</h4>
+          <p>Averaged item probabilities per unique order (4,932 test orders) and paired Low/Med/High Risk bands with training dollar quantiles ($314.55 &amp; $625.71).</p>
+        </div>
+        <div class="journey-step-card">
+          <span class="journey-step-num">Step 6 • Business Impact</span>
+          <h4>Focused Escalation</h4>
+          <p>Achieved 72.00% order accuracy and isolated 575 Urgent orders (11.66% of workload) with an 83.83% actual late rate covering 20.63% ($502.7K) of order value.</p>
+        </div>
+      </div>
+
+      <!-- Structured 9-Section Summary Report -->
+      <div class="summary-sections-grid">
+        <!-- Section 1 & 2 -->
+        <div class="summary-block-card">
+          <h3><span class="tag">1</span> Project Overview &amp; Dual-Lens Purpose</h3>
+          <p>
+            This project developed an integrated machine learning and business decision-support system for predicting late deliveries and prioritizing shipments within the DataCo Supply Chain dataset.
+          </p>
+          <p>
+            Rather than stopping at raw item-level predictions, the architecture bridges two operational lenses:
+          </p>
+          <ul class="summary-list">
+            <li><span><strong>Lens 1 (Prediction):</strong></span><span>5-model soft-voting ensemble predicting late-delivery probability at order placement.</span></li>
+            <li><span><strong>Lens 2 (Prioritization):</strong></span><span>Aggregates predictions to unique customer orders and combines risk with dollar exposure.</span></li>
+            <li><span><strong>Prediction Point:</strong></span><span>Order placement time (strictly zero post-order leakage).</span></li>
+          </ul>
+        </div>
+
+        <div class="summary-block-card">
+          <h3><span class="tag purple">2</span> Final System Configuration (Experiment 2)</h3>
+          <ul class="summary-list">
+            <li><span>Final Model Architecture</span><strong>Five-Model Soft Voting Ensemble</strong></li>
+            <li><span>Base Classifiers (20% weight each)</span><strong>LR, DT, RF, LightGBM, Calibrated SVM</strong></li>
+            <li><span>Selected Feature Set</span><strong>Top 100 Encoded Features (from 611)</strong></li>
+            <li><span>Classification Operating Threshold</span><strong>0.50 (Balances Precision &amp; Accuracy)</strong></li>
+            <li><span>Lens 2 Risk Boundaries</span><strong>Low &lt; 0.30 | Med 0.30–0.65 | High ≥ 0.65</strong></li>
+            <li><span>Monetary Impact Quantiles (Train)</span><strong>Low &lt; $314.55 | High ≥ $625.71</strong></li>
+          </ul>
+        </div>
+
+        <!-- Section 3 & 4 -->
+        <div class="summary-block-card">
+          <h3><span class="tag">3</span> Lens 1 — Order-Line Prediction Results</h3>
+          <p>
+            Evaluated on <strong>13,378 unseen test order lines</strong>, the final ensemble matched validation performance within 0.1%, demonstrating stable generalization:
+          </p>
+          <div class="table-wrap" style="margin:0.75rem 0;">
+            <table class="data-table">
+              <thead>
+                <tr><th>Metric</th><th>Validation (13,547)</th><th>Unseen Test (13,378)</th></tr>
+              </thead>
+              <tbody>
+                <tr class="highlight-row"><td>Accuracy</td><td>71.78% (0.7178)</td><td>71.69% (0.7169)</td></tr>
+                <tr><td>Precision</td><td>84.97% (0.8497)</td><td>84.81% (0.8481)</td></tr>
+                <tr><td>Recall</td><td>59.55% (0.5955)</td><td>58.95% (0.5895)</td></tr>
+                <tr><td>F1-Score</td><td>70.03% (0.7003)</td><td>69.56% (0.6956)</td></tr>
+                <tr><td>ROC-AUC / Avg Precision</td><td>0.7762 / 0.8351</td><td>0.7675 / 0.8303</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-bottom:0; font-size:0.84rem;">
+            <strong>Test Confusion Matrix (13,378 lines):</strong> 4,326 True Positives (Late caught), 5,265 True Negatives (On-time caught), 775 False Positives, and 3,012 False Negatives.
+          </p>
+        </div>
+
+        <div class="summary-block-card">
+          <h3><span class="tag emerald">4</span> Lens 2 — Shipment Risk Band Separation</h3>
+          <p>
+            Order-line probabilities were connected to their original <code>Order Id</code> and averaged across <strong>4,932 unique test orders</strong> (2,714 actual late orders). The risk bands show sharp separation in real late-delivery rates:
+          </p>
+          <div class="table-wrap" style="margin:0.75rem 0;">
+            <table class="data-table">
+              <thead>
+                <tr><th>Risk Band</th><th>Orders</th><th>Actual Late</th><th>Actual Late Rate</th><th>Late Capture</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Low (&lt; 0.30)</td><td>228 (4.62%)</td><td>22</td><td><strong>9.65%</strong></td><td>0.81%</td></tr>
+                <tr><td>Medium (0.30–0.65)</td><td>2,816 (57.10%)</td><td>1,082</td><td><strong>38.42%</strong></td><td>39.87%</td></tr>
+                <tr class="highlight-row"><td>High (≥ 0.65)</td><td>1,888 (38.28%)</td><td>1,610</td><td><strong>85.28%</strong></td><td>59.32%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-bottom:0; font-size:0.84rem;">
+            An order placed in the <strong>High Risk</strong> band is nearly <strong>9× more likely to be late</strong> (85.28%) than an order in the Low Risk band (9.65%).
+          </p>
+        </div>
+
+        <!-- Section 5 & 6 -->
+        <div class="summary-block-card">
+          <h3><span class="tag amber">5</span> Business Impact &amp; Operational Prioritization</h3>
+          <p>
+            Combining delivery risk with total order monetary value ($2,436,978.03 across the 4,932 test orders) creates three actionable operational tiers:
+          </p>
+          <div class="table-wrap" style="margin:0.75rem 0;">
+            <table class="data-table">
+              <thead>
+                <tr><th>Priority Tier</th><th>Test Orders</th><th>Late Rate</th><th>Workload Share</th><th>Dollar Value Share</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Low (Routine)</td><td>1,114</td><td>34.11% (380)</td><td>22.59%</td><td>8.67% ($211.3K)</td></tr>
+                <tr><td>Medium (Review)</td><td>3,243</td><td>57.11% (1,852)</td><td>65.75%</td><td>70.70% ($1,723.0K)</td></tr>
+                <tr class="highlight-row"><td>Urgent (Escalate)</td><td>575</td><td>83.83% (482)</td><td>11.66%</td><td>20.63% ($502.7K)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-bottom:0; font-size:0.84rem;">
+            <strong>Key Value:</strong> Urgent Priority requires intervening on only <strong>11.66% of orders</strong> while targeting an <strong>83.83% late group</strong> that accounts for <strong>20.63% of total revenue exposure</strong>.
+          </p>
+        </div>
+
+        <div class="summary-block-card">
+          <h3><span class="tag purple">6</span> Integrated Order-Line vs Unique-Order Evaluation</h3>
+          <p>
+            Aggregating predictions from individual order lines (13,378) to unique customer orders (4,932) improved every single classification and probability metric:
+          </p>
+          <div class="table-wrap" style="margin:0.75rem 0;">
+            <table class="data-table">
+              <thead>
+                <tr><th>Metric</th><th>Lens 1 (13,378 Lines)</th><th>Lens 2 (4,932 Orders)</th><th>Improvement</th></tr>
+              </thead>
+              <tbody>
+                <tr class="highlight-row"><td>Accuracy</td><td>71.69%</td><td><strong>72.00%</strong></td><td>+0.31%</td></tr>
+                <tr><td>Precision</td><td>84.81%</td><td><strong>85.25%</strong></td><td>+0.44%</td></tr>
+                <tr><td>Recall</td><td>58.95%</td><td><strong>59.40%</strong></td><td>+0.45%</td></tr>
+                <tr><td>F1-Score</td><td>69.56%</td><td><strong>70.01%</strong></td><td>+0.45%</td></tr>
+                <tr><td>ROC-AUC / Brier</td><td>0.7675 / 0.1854</td><td><strong>0.7734 / 0.1838</strong></td><td>+0.0059 / -0.0016</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-bottom:0; font-size:0.84rem;">
+            <strong>Unique-Order Confusion Matrix:</strong> 1,612 True Positives, 1,939 True Negatives, 279 False Positives, and 1,102 False Negatives.
+          </p>
+        </div>
+
+        <!-- Section 7 & 8 -->
+        <div class="summary-block-card">
+          <h3><span class="tag rose">7</span> Feature Importance &amp; Error Analysis Discoveries</h3>
+          <p>
+            Across all five tuned models, <strong>Shipping Mode</strong> and its interactions with region and product category were the dominant predictors.
+          </p>
+          <ul class="summary-list">
+            <li><span><strong>Standard Class Bottleneck:</strong></span><span>100% of validation False Negatives (3,033 missed late items) occurred in Standard Class shipments.</span></li>
+            <li><span><strong>First Class &amp; Same Day Precision:</strong></span><span>First Class achieved 94.29% accuracy (0 FN) and Same Day achieved 97.74% accuracy (0 FN, 17 FP).</span></li>
+            <li><span><strong>Geographic Stability:</strong></span><span>Error rates varied only modestly across global markets, with LATAM showing slightly higher error (29.79%) than Africa (24.67%).</span></li>
+          </ul>
+        </div>
+
+        <div class="summary-block-card">
+          <h3><span class="tag amber">8</span> Key Project Limitations &amp; Next Steps</h3>
+          <ul class="summary-list">
+            <li><span><strong>Recall Ceiling (~59%):</strong></span><span>At threshold 0.50, ~41% of late deliveries (primarily Standard Class) remain undetected.</span></li>
+            <li><span><strong>Shipping Mode Dependence:</strong></span><span>Models rely heavily on Shipping Mode SLA differences and struggle to separate late vs on-time items inside Standard Class.</span></li>
+            <li><span><strong>Order-Level Calibration:</strong></span><span>Order risk is the arithmetic mean of line probabilities rather than an independently calibrated order-level model.</span></li>
+            <li><span><strong>Rule-Based Triage Costs:</strong></span><span>Low/Medium/Urgent cutoffs use domain rules rather than empirical intervention cost-benefit curves.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 9 Final Conclusion Banner -->
+      <div class="friendly-callout" style="margin-bottom:2rem;">
+        <div class="friendly-callout-title">🏁 9. Final Project Conclusion &amp; Deployment Roadmap</div>
+        <p>
+          The DataCo Supply Chain Late-Delivery Prediction project provides a validated proof of concept connecting machine learning classification (<strong>Lens 1: 71.69% line accuracy, 84.81% precision</strong>) with business-impact shipment prioritization (<strong>Lens 2: 72.00% order accuracy, 85.28% high-risk precision, and 83.83% late rate in the 575-order Urgent tier</strong>). Before production deployment, future work should train specialized sub-models for Standard Class shipments to boost recall, calibrate aggregated order-level probabilities, and incorporate real expediting costs into the priority matrix.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW 3: 12-STAGE DEEP-DIVE WALKTHROUGH
+         ============================================================ -->
+    <section id="view-stages" class="view-section">
+      <div class="stages-layout">
+        <aside id="stageSidebarNav" class="stage-sidebar"></aside>
+        <div id="stageDetailPane" class="stage-detail-pane"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW 4: INTERACTIVE LENS 1 + LENS 2 SIMULATOR LAB
+         ============================================================ -->
+    <section id="view-simulator" class="view-section">
+      <div class="section-header">
+        <div>
+          <h3>Interactive Lens 1 &amp; Lens 2 Decision Simulator Lab</h3>
+          <p>Test the exact threshold optimization sweep (Cells 438–445) and order-level risk × monetary impact prioritization rules (Cells 495–506).</p>
+        </div>
+      </div>
+
+      <div class="sim-grid">
+        <!-- Simulator 1: Lens 1 Classification Threshold Explorer -->
+        <div class="sim-panel">
+          <div class="hero-tags">
+            <span class="tag">LENS 1 THRESHOLD LAB</span>
+            <span class="tag emerald">CELLS 438 – 445 &amp; 481</span>
+          </div>
+          <h3 style="margin-bottom:0.4rem;">Experiment 2 Validation Threshold Sweep (0.20 – 0.80)</h3>
+          <p style="font-size:0.88rem; color:var(--text-secondary);">
+            Drag the slider or click a preset below to inspect the empirical Precision / Recall / Accuracy / F1 trade-off across 13,547 validation order lines.
+          </p>
+
+          <div class="preset-pills">
+            <button class="preset-pill" onclick="setThresholdPreset(2)">0.30 (Low-Risk Cutoff)</button>
+            <button class="preset-pill" onclick="setThresholdPreset(3)">0.35 (Max F1: 73.47%)</button>
+            <button class="preset-pill" onclick="setThresholdPreset(6)">⭐ 0.50 (Selected: 71.78% Acc)</button>
+            <button class="preset-pill" onclick="setThresholdPreset(9)">0.65 (High-Risk Cutoff)</button>
+          </div>
+
+          <div class="slider-group">
+            <label>
+              <span>Classification Probability Threshold</span>
+              <span id="simThrValue" style="color:var(--accent-blue); font-size:1.1rem; font-weight:800;">0.50</span>
+            </label>
+            <input type="range" id="simThresholdSlider" min="0" max="12" step="1" value="6" />
+            <div style="display:flex; justify-content:space-between; font-size:0.74rem; color:var(--text-secondary); margin-top:0.25rem;">
+              <span>0.20 (Max Recall)</span>
+              <span>0.35 (Max F1)</span>
+              <span>0.50 (Selected)</span>
+              <span>0.80 (Max Precision)</span>
+            </div>
+          </div>
+
+          <div class="lens-metrics" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="mini-stat">
+              <span>Validation Accuracy</span>
+              <strong id="simAccVal">71.78%</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Validation Precision</span>
+              <strong id="simPrecVal">84.97%</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Validation Recall</span>
+              <strong id="simRecVal">59.55%</strong>
+            </div>
+            <div class="mini-stat">
+              <span>Validation F1-Score</span>
+              <strong id="simF1Val">70.03%</strong>
+            </div>
+          </div>
+
+          <div class="sim-result-box">
+            <div style="font-size:0.76rem; text-transform:uppercase; color:var(--text-secondary); font-weight:700;">Notebook Diagnostic Assessment</div>
+            <div id="simThrNote" style="font-size:0.92rem; font-weight:600; margin-top:0.25rem; color:var(--text-primary);"></div>
+          </div>
+        </div>
+
+        <!-- Simulator 2: Lens 2 Order Aggregation & Business Priority Calculator -->
+        <div class="sim-panel">
+          <div class="hero-tags">
+            <span class="tag emerald">LENS 2 ORDER PRIORITY CALCULATOR</span>
+            <span class="tag purple">CELLS 495 – 506</span>
+          </div>
+          <h3 style="margin-bottom:0.4rem;">Multi-Line Order Risk &amp; Monetary Priority Simulator</h3>
+          <p style="font-size:0.88rem; color:var(--text-secondary);">
+            Simulate a 3-item customer order or click a one-click scenario below to see how Lens 2 computes the order-level risk band and operational escalation tier.
+          </p>
+
+          <div class="preset-pills">
+            <button class="preset-pill" onclick="applySimPreset('urgent')">🚨 Urgent Escalation Scenario</button>
+            <button class="preset-pill" onclick="applySimPreset('medium')">⚠️ Medium Watchlist Scenario</button>
+            <button class="preset-pill" onclick="applySimPreset('low')">✅ Low-Risk Routine Scenario</button>
+          </div>
+
+          <div class="slider-group">
+            <label><span>Order Line #1 Predicted Late Probability</span><span id="simLine1Val">0.78</span></label>
+            <input type="range" id="simLine1" min="0.01" max="0.99" step="0.01" value="0.78" />
+          </div>
+          <div class="slider-group">
+            <label><span>Order Line #2 Predicted Late Probability</span><span id="simLine2Val">0.72</span></label>
+            <input type="range" id="simLine2" min="0.01" max="0.99" step="0.01" value="0.72" />
+          </div>
+          <div class="slider-group">
+            <label><span>Order Line #3 Predicted Late Probability</span><span id="simLine3Val">0.69</span></label>
+            <input type="range" id="simLine3" min="0.01" max="0.99" step="0.01" value="0.69" />
+          </div>
+          <div class="slider-group">
+            <label><span>Total Order Monetary Value (USD) [Cutoffs: $314.55 / $625.71]</span><span id="simOrderValueLabel">$740.00</span></label>
+            <input type="range" id="simOrderValue" min="50" max="1500" step="10" value="740" />
+          </div>
+
+          <div class="sim-result-box">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-secondary);">Aggregated Order Mean Risk</span>
+                <div id="simOrderMeanProb" style="font-size:1.1rem; font-weight:800;">0.730 (73.0%)</div>
+              </div>
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-secondary);">Order Classification (Thr 0.50)</span>
+                <div id="simOrderPredClass" style="font-size:0.95rem; font-weight:700;">LATE DELIVERY (Class 1)</div>
+              </div>
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-secondary);">Lens 2 Risk Band (&lt;0.30 / 0.30–0.65 / ≥0.65)</span>
+                <div id="simOrderRiskBand" style="font-size:0.95rem; font-weight:700;">High Risk (≥ 0.65)</div>
+              </div>
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-secondary);">Monetary Impact Tier (Train Quantiles)</span>
+                <div id="simOrderImpactBand" style="font-size:0.95rem; font-weight:700;">High Impact (≥ $625.71)</div>
+              </div>
+            </div>
+            <div style="margin-top:0.9rem; padding-top:0.85rem; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+              <div>
+                <span style="font-size:0.74rem; text-transform:uppercase; color:var(--text-secondary);">Assigned Operational Priority</span>
+                <div id="simOrderPriority" style="font-size:1.25rem; font-weight:800;">URGENT PRIORITY</div>
+              </div>
+              <div style="text-align:right;">
+                <span style="font-size:0.74rem; color:var(--text-secondary);">Recommended Supply Chain Action</span>
+                <div id="simOrderAction" style="font-size:0.88rem; font-weight:600;">Immediate operational escalation</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reference Decision Matrix Table -->
+      <div class="stage-detail-pane">
+        <h3 style="margin-bottom:0.5rem;">Lens 2 Operational Priority Policy Matrix &amp; Test Verification (Cells 498–506)</h3>
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:1rem;">
+          Training-set order value quantiles ($314.55 at 33.3% and $625.71 at 66.7%) are combined with order-level mean probability risk bands (&lt;0.30 Low, 0.30–0.65 Medium, ≥0.65 High) across the 4,932 unseen test orders ($2,436,978.03 total value).
+        </p>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Operational Priority Tier</th>
+                <th>Rule Definition (Risk × Monetary Impact)</th>
+                <th>Test Orders (4,932)</th>
+                <th>Actual Late Orders</th>
+                <th>Observed Late Rate</th>
+                <th>Workload Share</th>
+                <th>Late-Order Capture</th>
+                <th>Monetary Value Coverage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Low Priority</strong></td>
+                <td>Low Risk (Low/Med Impact) or Medium Risk + Low Impact</td>
+                <td>1,114</td>
+                <td>380</td>
+                <td>34.11%</td>
+                <td>22.59%</td>
+                <td>14.00%</td>
+                <td>8.67% ($211,286)</td>
+              </tr>
+              <tr>
+                <td><strong>Medium Priority</strong></td>
+                <td>Medium Risk (Med/High Impact), High Risk (Low/Med Impact), or Low Risk + High Impact</td>
+                <td>3,243</td>
+                <td>1,852</td>
+                <td>57.11%</td>
+                <td>65.75%</td>
+                <td>68.24%</td>
+                <td>70.70% ($1,722,999)</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>Urgent Priority</strong></td>
+                <td>High Delivery Risk (≥ 0.65) AND High Monetary Impact (≥ $625.71)</td>
+                <td>575</td>
+                <td>482</td>
+                <td>83.83%</td>
+                <td>11.66%</td>
+                <td>17.76%</td>
+                <td>20.63% ($502,693)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         VIEW 5: ALL 84 VISUAL CHARTS GALLERY
+         ============================================================ -->
+    <section id="view-gallery" class="view-section">
+      <div class="section-header">
+        <div>
+          <h3>Complete Visual Charts Gallery (All 84 Notebook Plots)</h3>
+          <p id="galleryCountLabel">Showing 84 of 84 embedded notebook charts</p>
+        </div>
+      </div>
+
+      <div class="explorer-controls">
+        <input
+          type="text"
+          id="gallerySearchInput"
+          class="search-input"
+          placeholder="Search charts by title, feature, model, or cell number (e.g. 'ROC', 'Shipping Mode', 'Calibration', 'Cell 493')..."
+          oninput="filterGallery()"
+        />
+        <select id="galleryStageFilter" class="select-input" onchange="filterGallery()">
+          <option value="all">All 12 Stages (84 Plots)</option>
+          <option value="1">Stage 1: Data Loading &amp; Initial Profiling (7 Plots)</option>
+          <option value="2">Stage 2: Comprehensive EDA (21 Plots)</option>
+          <option value="3">Stage 3: Feature Availability &amp; Leakage Audit (3 Plots)</option>
+          <option value="4">Stage 4: Group Splitting &amp; Preprocessing EDA (14 Plots)</option>
+          <option value="5">Stage 5: 5-Fold CV Feature Selection (2 Plots)</option>
+          <option value="6">Stage 6: Baseline Machine Learning Models (9 Plots)</option>
+          <option value="8">Stage 8: Soft-Voting Ensemble &amp; Thresholds (2 Plots)</option>
+          <option value="9">Stage 9: Error Analysis, Calibration &amp; Feature Importance (12 Plots)</option>
+          <option value="10">Stage 10: Lens 1 Final Test Evaluation (5 Plots)</option>
+          <option value="11">Stage 11: Lens 2 Shipment Risk Profiling (3 Plots)</option>
+          <option value="12">Stage 12: Integrated Lens 1 + Lens 2 Evaluation (6 Plots)</option>
+        </select>
+      </div>
+
+      <div id="fullChartsGalleryGrid" class="charts-grid"></div>
+    </section>
+
+    <!-- ============================================================
+         VIEW 6: FULL 509-CELL NOTEBOOK EXPLORER
+         ============================================================ -->
+    <section id="view-explorer" class="view-section">
+      <div class="section-header">
+        <div>
+          <h3>Full 509-Cell Interactive Notebook Explorer</h3>
+          <p id="explorerStatusLabel">Browse, search, and inspect every code cell, markdown interpretation, HTML table, and chart in the notebook.</p>
+        </div>
+      </div>
+
+      <div class="explorer-controls">
+        <input
+          type="text"
+          id="explorerSearchInput"
+          class="search-input"
+          placeholder="Search across all 509 cells (Python code, Markdown notes, outputs, or type 'Cell #493')..."
+          oninput="onExplorerFilterChange()"
+        />
+        <select id="explorerStageFilter" class="select-input" onchange="onExplorerFilterChange()">
+          <option value="all">All 12 Pipeline Stages (Cells 0–508)</option>
+          <option value="1">Stage 1: Data Loading &amp; Profiling (Cells 0–35)</option>
+          <option value="2">Stage 2: Comprehensive EDA (Cells 36–151)</option>
+          <option value="3">Stage 3: Feature Availability &amp; Leakage Audit (Cells 152–263)</option>
+          <option value="4">Stage 4: Group Split &amp; Preprocessing (Cells 264–297)</option>
+          <option value="5">Stage 5: 5-Fold CV Feature Selection (Cells 298–310)</option>
+          <option value="6">Stage 6: Baseline ML Models (Cells 311–369)</option>
+          <option value="7">Stage 7: Hyperparameter Tuning (Cells 370–418)</option>
+          <option value="8">Stage 8: Ensemble &amp; Threshold Selection (Cells 419–445)</option>
+          <option value="9">Stage 9: Error Analysis &amp; Feature Importance (Cells 446–488)</option>
+          <option value="10">Stage 10: Lens 1 Test Evaluation (Cells 489–493)</option>
+          <option value="11">Stage 11: Lens 2 Risk &amp; Prioritization (Cells 494–503)</option>
+          <option value="12">Stage 12: Integrated Lens 1 + Lens 2 &amp; Summary (Cells 504–508)</option>
+        </select>
+        <select id="explorerTypeFilter" class="select-input" onchange="onExplorerFilterChange()">
+          <option value="all">All Cell &amp; Output Types (509)</option>
+          <option value="code">Code Cells Only</option>
+          <option value="markdown">Markdown Cells Only</option>
+          <option value="image">Cells with Visual Charts (84 Plots)</option>
+          <option value="html">Cells with HTML DataFrames</option>
+        </select>
+      </div>
+
+      <div id="explorerCellList" class="cell-list"></div>
+      <div id="explorerPagination" class="pagination-bar"></div>
+    </section>
+
+  </main>
+
+  <!-- High-Res Chart Lightbox Modal -->
+  <div id="chartLightbox" class="lightbox" onclick="if(event.target === this) closeLightbox()">
+    <div class="lightbox-content">
+      <div class="lightbox-header">
+        <h4 id="lightboxTitle">Chart Preview</h4>
+        <button class="btn-secondary" style="padding:0.35rem 0.75rem;" onclick="closeLightbox()">✕ Close</button>
+      </div>
+      <div class="lightbox-body">
+        <img id="lightboxImg" src="" alt="Enlarged Notebook Plot" />
+      </div>
+      <div class="lightbox-footer">
+        <span id="lightboxMeta">Cell Info</span>
+        <button id="lightboxJumpBtn" class="btn-primary" style="padding:0.45rem 0.95rem; font-size:0.82rem;">Inspect Source Cell in Explorer →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/notebook_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

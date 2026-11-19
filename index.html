@@ -893,47 +893,794 @@
             letter-spacing: 1px;
         }
 
-        /* ===== PROJECTS (LIGHT SECTION) ===== */
-        .projects-empty-state {
-            background: var(--bg-light-alt);
-            border: 2px dashed var(--border-light);
-            border-radius: 14px;
-            padding: 80px 40px;
-            text-align: center;
-            max-width: 760px;
-            margin: 0 auto;
+        /* ===== PROJECTS (LIGHT SECTION - VENUJA STYLE CARDS + INTERACTIVE DASHBOARD) ===== */
+        .projects-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
         }
-        .empty-icon {
-            font-size: 3.5rem;
-            color: var(--royal-blue);
-            margin-bottom: 20px;
-        }
-        .projects-empty-state h3 {
-            font-family: var(--font-display);
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-        }
-        .projects-empty-state p {
-            font-size: 0.98rem;
-            color: var(--text-dark-muted);
-            max-width: 520px;
-            margin: 0 auto 28px;
-            line-height: 1.7;
-        }
-        .pill-badge {
+        .proj-filter-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 14px;
+            padding: 9px 18px;
             background: #ffffff;
             border: 1px solid var(--border-light);
-            border-radius: 100px;
+            border-radius: 6px;
+            color: var(--text-dark-muted);
+            font-family: var(--font-sans);
+            font-size: 0.86rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .proj-filter-btn:hover {
+            border-color: var(--royal-blue);
+            color: var(--royal-blue);
+        }
+        .proj-filter-btn.active {
+            background: var(--royal-blue);
+            border-color: var(--royal-blue);
+            color: #ffffff;
+            box-shadow: 0 4px 14px var(--royal-blue-glow);
+        }
+        .proj-filter-count {
             font-family: var(--font-mono);
-            font-size: 0.78rem;
+            font-size: 0.72rem;
+            padding: 2px 7px;
+            border-radius: 100px;
+            background: rgba(15, 23, 42, 0.06);
+            color: inherit;
+        }
+        .proj-filter-btn.active .proj-filter-count {
+            background: rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+        }
+
+        .projects-showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+        @media (max-width: 960px) {
+            .projects-showcase-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .venuja-proj-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+        }
+        .venuja-proj-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(31, 86, 240, 0.35);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.1);
+        }
+
+        /* Top Banner Graphic (Like DengueRisk reference screenshot) */
+        .vp-banner-outer {
+            padding: 16px 16px 0 16px;
+        }
+        .vp-banner-board {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px;
+            position: relative;
+            overflow: hidden;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 14px 14px;
+        }
+        .vp-banner-main {
+            display: grid;
+            grid-template-columns: 1.05fr 1.25fr;
+            gap: 16px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(6px);
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        @media (max-width: 560px) {
+            .vp-banner-main {
+                grid-template-columns: 1fr;
+            }
+        }
+        .vp-banner-left {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .vp-brand-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+        .vp-brand-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            background: #0f172a;
+            color: #38bdf8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .vp-brand-title {
+            font-family: var(--font-display);
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.4px;
+            line-height: 1.15;
+        }
+        .vp-brand-title span {
+            color: var(--royal-blue);
+        }
+        .vp-brand-sub {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: #475569;
+            line-height: 1.35;
+        }
+        .vp-brand-accent-line {
+            width: 28px;
+            height: 2.5px;
+            background: var(--royal-blue);
+            border-radius: 2px;
+            margin: 2px 0;
+        }
+        .vp-brand-mini-desc {
+            font-size: 0.67rem;
+            color: #64748b;
+            line-height: 1.45;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .vp-key-features-lbl {
+            font-family: var(--font-mono);
+            font-size: 0.58rem;
+            font-weight: 700;
+            color: var(--royal-blue);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .vp-mini-features-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-top: 2px;
+        }
+        .vp-mini-feat {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 6px 4px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+        }
+        .vp-mini-feat i {
+            font-size: 0.72rem;
+            color: var(--royal-blue);
+        }
+        .vp-mini-feat span {
+            font-size: 0.56rem;
+            font-weight: 600;
+            color: #334155;
+            line-height: 1.15;
+        }
+
+        /* Dark App Mockup Window on Right of Banner */
+        .vp-dark-mockup {
+            background: linear-gradient(145deg, #090d16 0%, #0f172a 100%);
+            border-radius: 9px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(8, 11, 17, 0.35);
+            color: #ffffff;
+            position: relative;
+        }
+        .vp-mockup-bar {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 6px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .vp-mockup-dots {
+            display: flex;
+            gap: 4px;
+        }
+        .vp-mockup-dots span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+        .vp-mockup-dots span:nth-child(1) { background: #ef4444; }
+        .vp-mockup-dots span:nth-child(2) { background: #f59e0b; }
+        .vp-mockup-dots span:nth-child(3) { background: #10b981; }
+        .vp-mockup-nav {
+            display: flex;
+            gap: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.52rem;
+            color: #94a3b8;
+        }
+        .vp-mockup-nav span.active {
+            color: #38bdf8;
+            font-weight: 600;
+        }
+        .vp-mockup-body {
+            padding: 12px;
+            position: relative;
+            min-height: 148px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .vp-mockup-screenshot {
+            width: 100%;
+            height: 135px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 8px;
+        }
+        .vp-mockup-dashboard-ui {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .vp-mockup-text-col {
+            flex: 1;
+        }
+        .vp-mockup-kicker {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 2px 6px;
+            background: rgba(56, 189, 248, 0.14);
+            color: #38bdf8;
+            border-radius: 3px;
+            margin-bottom: 5px;
+        }
+        .vp-mockup-heading {
+            font-family: var(--font-display);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.25;
+            margin-bottom: 5px;
+        }
+        .vp-mockup-heading span {
+            color: #38bdf8;
+        }
+        .vp-mockup-sub {
+            font-size: 0.6rem;
+            color: #94a3b8;
+            line-height: 1.35;
+            margin-bottom: 8px;
+        }
+        .vp-mockup-btn-fake {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.56rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: var(--royal-blue);
+            color: #ffffff;
+        }
+        .vp-gauge-circle {
+            width: 66px;
+            height: 66px;
+            border-radius: 50%;
+            border: 4px solid rgba(56, 189, 248, 0.2);
+            border-top-color: #38bdf8;
+            border-right-color: var(--royal-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 0 16px rgba(56, 189, 248, 0.2);
+        }
+        .vp-gauge-val {
+            font-family: var(--font-display);
+            font-size: 0.86rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1;
+        }
+        .vp-gauge-lbl {
+            font-family: var(--font-mono);
+            font-size: 0.45rem;
+            color: #38bdf8;
+            text-transform: uppercase;
+            margin-top: 2px;
+            text-align: center;
+        }
+
+        /* Banner Bottom Tech Stack Strip & GitHub Pill */
+        .vp-banner-tech-strip {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 7px 12px;
+            margin-top: 10px;
+        }
+        .vp-tech-strip-label {
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding-right: 8px;
+            border-right: 1px solid #e2e8f0;
+        }
+        .vp-tech-strip-icons {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .vp-strip-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #334155;
+        }
+        .vp-strip-item i {
+            font-size: 0.8rem;
+            color: var(--royal-blue);
+        }
+        .vp-banner-repo-pill {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 100px;
+            padding: 5px 14px;
+            margin: 8px auto 0;
+            width: fit-content;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: #334155;
+            font-weight: 500;
+        }
+        .vp-banner-repo-pill span {
             color: var(--royal-blue);
             font-weight: 600;
+        }
+
+        /* Card Bottom Content Section (Matches Venuja Screenshot) */
+        .vp-card-body {
+            padding: 24px 26px 26px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .vp-cat-badge {
+            display: inline-block;
+            background: var(--royal-blue);
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 5px 12px;
+            border-radius: 4px;
+            width: fit-content;
+            margin-bottom: 14px;
+        }
+        .vp-card-title {
+            font-family: var(--font-display);
+            font-size: 1.42rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.4px;
+            line-height: 1.3;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .vp-card-title:hover {
+            color: var(--royal-blue);
+        }
+        .vp-card-tech-line {
+            font-family: var(--font-sans);
+            font-size: 0.84rem;
+            font-weight: 500;
+            color: var(--royal-blue);
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+        .vp-card-desc {
+            font-size: 0.95rem;
+            color: var(--text-dark-muted);
+            line-height: 1.65;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+        .vp-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid #f1f5f9;
+        }
+        .vp-footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--royal-blue);
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        .vp-footer-link:hover {
+            color: var(--royal-blue-hover);
+            transform: translateX(2px);
+        }
+        .vp-footer-link i {
+            font-size: 0.78rem;
+        }
+
+        /* ===== INTERACTIVE PROJECT DASHBOARD MODAL (FULL CASE STUDY + SIMULATOR) ===== */
+        .proj-dash-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 9, 15, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            overflow-y: auto;
+        }
+        .proj-dash-backdrop.open {
+            display: flex;
+        }
+        .proj-dash-modal {
+            background: #0b101b;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            max-width: 1020px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            color: #ffffff;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.75);
+            position: relative;
+            animation: modalPop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.96) translateY(12px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .pd-modal-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(11, 16, 27, 0.92);
+            backdrop-filter: blur(12px);
+            padding: 16px 28px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .pd-modal-breadcrumbs {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pd-modal-breadcrumbs strong {
+            color: #ffffff;
+        }
+        .pd-modal-top-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .pd-modal-close-btn {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .pd-modal-close-btn:hover {
+            background: #ef4444;
+            border-color: #ef4444;
+        }
+        .pd-modal-body {
+            padding: 32px 32px 40px;
+        }
+        .pd-hero-head {
+            margin-bottom: 24px;
+        }
+        .pd-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: rgba(31, 86, 240, 0.18);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            margin-bottom: 12px;
+        }
+        .pd-hero-title {
+            font-family: var(--font-display);
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+        .pd-hero-desc {
+            font-size: 0.98rem;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        .pd-kpi-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        @media (max-width: 640px) {
+            .pd-kpi-row { grid-template-columns: 1fr; }
+        }
+        .pd-kpi-box {
+            background: #121929;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 3px solid var(--royal-blue);
+            border-radius: 10px;
+            padding: 18px 20px;
+            text-align: center;
+        }
+        .pd-kpi-val {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+        .pd-kpi-lbl {
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            color: #94a3b8;
+            margin-top: 4px;
+            text-transform: uppercase;
+        }
+        .pd-nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 14px;
+            margin-bottom: 24px;
+        }
+        .pd-tab-trigger {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            padding: 9px 16px;
+            border-radius: 8px;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .pd-tab-trigger:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .pd-tab-trigger.active {
+            background: var(--royal-blue);
+            border-color: var(--royal-blue);
+            color: #ffffff;
+        }
+        .pd-sim-box {
+            background: #121929;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .pd-sim-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 14px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .pd-sim-head h4 {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pd-sim-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 24px;
+            align-items: center;
+        }
+        @media (max-width: 768px) {
+            .pd-sim-grid { grid-template-columns: 1fr; }
+        }
+        .pd-ctrl-group {
+            margin-bottom: 16px;
+        }
+        .pd-ctrl-group label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.84rem;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .pd-ctrl-group label strong {
+            color: #38bdf8;
+            font-family: var(--font-mono);
+        }
+        .pd-range, .pd-select, .pd-textarea {
+            width: 100%;
+            background: #0b101b;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 6px;
+            padding: 9px 12px;
+            color: #ffffff;
+            font-family: var(--font-sans);
+            font-size: 0.88rem;
+        }
+        .pd-range {
+            padding: 0;
+            height: 6px;
+            accent-color: var(--royal-blue);
+            cursor: pointer;
+        }
+        .pd-out-box {
+            background: #0b101b;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 12px;
+            padding: 22px;
+            text-align: center;
+        }
+        .pd-out-lbl {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            color: #94a3b8;
+        }
+        .pd-out-val {
+            font-family: var(--font-display);
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #38bdf8;
+            margin: 6px 0;
+        }
+        .pd-out-sub {
+            font-size: 0.82rem;
+            color: #cbd5e1;
+        }
+        .pd-two-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .pd-two-cols { grid-template-columns: 1fr; }
+        }
+        .pd-info-card {
+            background: #121929;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 22px;
+        }
+        .pd-info-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.12rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .pd-info-card p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.65;
+            margin-bottom: 14px;
+        }
+        .pd-info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .pd-info-list li {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            padding: 6px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 1.5;
+        }
+        .pd-info-list li i {
+            color: #38bdf8;
+            margin-top: 4px;
+            font-size: 0.75rem;
         }
 
         /* ===== COMPETITIONS / EXPERIENCES (DARK SECTION) ===== */
@@ -1111,43 +1858,163 @@
         .cert-cards-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 28px;
+        }
+        @media (max-width: 768px) {
+            .cert-cards-grid {
+                grid-template-columns: 1fr;
+            }
         }
         .cert-card {
-            background: var(--bg-light-alt);
+            background: #ffffff;
             border: 1px solid var(--border-light);
-            border-radius: 10px;
-            padding: 28px;
+            border-radius: 14px;
+            overflow: hidden;
             display: flex;
-            align-items: flex-start;
-            gap: 20px;
-            transition: var(--transition);
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+            cursor: pointer;
         }
         .cert-card:hover {
             border-color: var(--royal-blue);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.04);
-            background: #ffffff;
+            transform: translateY(-5px);
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+        }
+        .cert-img-frame {
+            position: relative;
+            background: #f1f5f9;
+            padding: 14px 14px 0 14px;
+            border-bottom: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+        .cert-img-frame img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 8px 8px 0 0;
+            border: 1px solid #cbd5e1;
+            border-bottom: none;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+        .cert-card:hover .cert-img-frame img {
+            transform: scale(1.02);
+        }
+        .cert-zoom-badge {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(6px);
+            color: #ffffff;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+        .cert-card:hover .cert-zoom-badge {
+            background: var(--royal-blue);
+            opacity: 1;
+        }
+        .cert-card-body {
+            padding: 22px 24px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            flex: 1;
         }
         .cert-index {
             font-family: var(--font-mono);
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: 1.65rem;
+            font-weight: 800;
             color: var(--royal-blue);
             opacity: 0.45;
             line-height: 1;
             flex-shrink: 0;
         }
-        .cert-card-content h4 {
-            font-family: var(--font-display);
-            font-size: 1.05rem;
+        .cert-card-content {
+            flex: 1;
+        }
+        .cert-issuer-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
             font-weight: 700;
-            color: var(--text-dark);
+            color: var(--royal-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 4px;
         }
+        .cert-card-content h4 {
+            font-family: var(--font-display);
+            font-size: 1.12rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
         .cert-card-content p {
-            font-size: 0.85rem;
+            font-size: 0.86rem;
             color: var(--text-dark-muted);
+            line-height: 1.55;
+        }
+
+        /* Certificate Lightbox Modal */
+        .cert-lightbox-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 9, 15, 0.88);
+            backdrop-filter: blur(10px);
+            z-index: 3500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .cert-lightbox-backdrop.open {
+            display: flex;
+        }
+        .cert-lightbox-box {
+            max-width: 920px;
+            width: 100%;
+            background: #0b101b;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            animation: modalPop 0.25s ease;
+        }
+        .cert-lightbox-top {
+            padding: 14px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+        }
+        .cert-lightbox-top h5 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        .cert-lightbox-img-wrap {
+            padding: 20px;
+            background: #070a12;
+            text-align: center;
+        }
+        .cert-lightbox-img-wrap img {
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 8px;
+            object-fit: contain;
         }
 
         /* ===== CONTACT SECTION (FULL-BLEED ROYAL BLUE) ===== */
@@ -1834,7 +2701,7 @@
         </div>
     </section>
 
-    <!-- ===== PROJECTS (LIGHT SECTION) ===== -->
+    <!-- ===== PROJECTS (LIGHT SECTION - VENUJA STYLE CARDS) ===== -->
     <section class="section-light" id="projects">
         <div class="container">
             <div class="sec-header">
@@ -1843,18 +2710,39 @@
                 <p class="sec-desc light-mode">End-to-end Machine Learning pipelines, full-stack predictive web applications, and analytics projects.</p>
             </div>
 
-            <div class="projects-empty-state">
-                <i class="fa-solid fa-code-branch empty-icon"></i>
-                <h3>Projects Section Coming Soon</h3>
-                <p>
-                    I am currently compiling full case studies, code repositories, and interactive demos for my latest Machine Learning and Data Engineering projects.
-                </p>
-                <div class="pill-badge">
-                    <i class="fa-solid fa-clock"></i> Updates Being Prepared
-                </div>
+            <!-- Category Filter Bar -->
+            <div class="projects-filter-bar" id="projectsFilterBar">
+                <button class="proj-filter-btn active" onclick="filterProjects('all', this)">
+                    <span>All Projects</span>
+                    <span class="proj-filter-count">8</span>
+                </button>
+                <button class="proj-filter-btn" onclick="filterProjects('ml', this)">
+                    <span>Machine Learning</span>
+                    <span class="proj-filter-count">4</span>
+                </button>
+                <button class="proj-filter-btn" onclick="filterProjects('ai', this)">
+                    <span>AI &amp; Automation</span>
+                    <span class="proj-filter-count">2</span>
+                </button>
+                <button class="proj-filter-btn" onclick="filterProjects('fullstack', this)">
+                    <span>Full-Stack</span>
+                    <span class="proj-filter-count">1</span>
+                </button>
+                <button class="proj-filter-btn" onclick="filterProjects('analytics', this)">
+                    <span>Data Analytics</span>
+                    <span class="proj-filter-count">1</span>
+                </button>
             </div>
+
+            <!-- Projects Showcase Grid -->
+            <div class="projects-showcase-grid" id="projectsShowcaseGrid"></div>
         </div>
     </section>
+
+    <!-- ===== INTERACTIVE PROJECT DASHBOARD MODAL ===== -->
+    <div class="proj-dash-backdrop" id="projDashBackdrop" onclick="closeProjDashOnBackdrop(event)">
+        <div class="proj-dash-modal" id="projDashModal"></div>
+    </div>
 
     <!-- ===== EXPERIENCES OF COMPETITIONS (DARK SECTION) ===== -->
     <section class="section-dark" id="competitions">
@@ -1871,13 +2759,13 @@
                     <div>
                         <div class="comp-card-top">
                             <div class="comp-award-icon">
-                                <i class="fa-solid fa-trophy"></i>
+                                <i class="fa-solid fa-award"></i>
                             </div>
-                            <span class="comp-status-chip chip-champion">Champions</span>
+                            <span class="comp-status-chip chip-finalist">Finalist</span>
                         </div>
                         <h3 class="comp-title">Mini Hackathon — First Round</h3>
                         <p class="comp-desc">
-                            Demonstrated rapid prototyping and algorithmic problem solving under strict time constraints, qualifying as first-round champions.
+                            Demonstrated rapid prototyping and algorithmic problem solving under strict time constraints, qualifying as first-round finalists.
                         </p>
                     </div>
                     <div class="comp-cta-link">
@@ -1890,13 +2778,13 @@
                     <div>
                         <div class="comp-card-top">
                             <div class="comp-award-icon">
-                                <i class="fa-solid fa-award"></i>
+                                <i class="fa-solid fa-trophy"></i>
                             </div>
-                            <span class="comp-status-chip chip-finalist">Finalist</span>
+                            <span class="comp-status-chip chip-champion">Champions</span>
                         </div>
                         <h3 class="comp-title">Mini Hackathon — Final Round</h3>
                         <p class="comp-desc">
-                            Advanced to the final stage, implementing comprehensive end-to-end application architecture and delivering a polished presentation.
+                            Won the final stage championship by implementing a comprehensive end-to-end application architecture and delivering a winning presentation.
                         </p>
                     </div>
                     <div class="comp-cta-link">
@@ -1949,9 +2837,9 @@
     <div class="modal-backdrop" id="modal-miniHack1" onclick="closeOnBackdrop(event, 'miniHack1')">
         <div class="modal-window">
             <i class="fa-solid fa-xmark modal-close-icon" onclick="closeCompModal('miniHack1')"></i>
-            <h3 class="modal-heading">Mini Hackathon — First Round</h3>
+            <h3 class="modal-heading">Mini Hackathon — First Round (Finalist)</h3>
             <p class="modal-body-text">
-                Participated and secured 1st place in the initial competitive phase of the Mini Hackathon. Applied rapid problem analysis, team coordination, and clean algorithmic implementation.
+                Participated and qualified as a Finalist in the initial competitive phase of the Mini Hackathon. Applied rapid problem analysis, team coordination, and clean algorithmic implementation.
             </p>
             <div class="modal-dashboard-placeholder">
                 <i class="fa-solid fa-chart-line"></i>
@@ -1964,9 +2852,9 @@
     <div class="modal-backdrop" id="modal-miniHack2" onclick="closeOnBackdrop(event, 'miniHack2')">
         <div class="modal-window">
             <i class="fa-solid fa-xmark modal-close-icon" onclick="closeCompModal('miniHack2')"></i>
-            <h3 class="modal-heading">Mini Hackathon — Final Round</h3>
+            <h3 class="modal-heading">Mini Hackathon — Final Round (Champions)</h3>
             <p class="modal-body-text">
-                Advanced into the high-stakes final round, demonstrating a full-scale prototype with backend integration, live data flow, and user-centric frontend interface.
+                Emerged as Champions in the high-stakes final round, demonstrating a full-scale prototype with backend integration, live data flow, and user-centric frontend interface.
             </p>
             <div class="modal-dashboard-placeholder">
                 <i class="fa-solid fa-chart-line"></i>
@@ -2012,44 +2900,91 @@
             <div class="sec-header">
                 <div class="sec-label light-mode">// CREDENTIALS & RECOGNITION</div>
                 <h2 class="sec-title" style="color:var(--text-dark);">Certifications<span class="period"> .</span></h2>
-                <p class="sec-desc light-mode">Verified credentials and formal professional development achievements.</p>
+                <p class="sec-desc light-mode">Verified credentials and formal professional development achievements. Click any certificate to view full size.</p>
             </div>
 
             <div class="cert-cards-grid">
-                <div class="cert-card">
-                    <div class="cert-index">01</div>
-                    <div class="cert-card-content">
-                        <h4>Certificate of Product Management</h4>
-                        <p>Core principles of product lifecycle management, user validation, and tech product roadmapping.</p>
+                <!-- 01: Project Management Bootcamp -->
+                <div class="cert-card" onclick="openCertLightbox('assets/images/cert_pm_bootcamp.jpg', 'Project Management Bootcamp — CodeWave')">
+                    <div class="cert-img-frame">
+                        <img src="assets/images/cert_pm_bootcamp.jpg" alt="Project Management Bootcamp Certificate">
+                        <span class="cert-zoom-badge"><i class="fa-solid fa-expand"></i> View Certificate</span>
+                    </div>
+                    <div class="cert-card-body">
+                        <div class="cert-index">01</div>
+                        <div class="cert-card-content">
+                            <span class="cert-issuer-tag">CodeWave · Aug 2026</span>
+                            <h4>Project Management Bootcamp</h4>
+                            <p>Core principles of project &amp; product lifecycle management, user validation, agile execution, and technical roadmapping.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="cert-card">
-                    <div class="cert-index">02</div>
-                    <div class="cert-card-content">
-                        <h4>DevOps Beginner Workshop</h4>
-                        <p>Introduction to CI/CD pipelines, containerization fundamentals, and automated workflows.</p>
+                <!-- 02: Introduction to DevOps Workshop -->
+                <div class="cert-card" onclick="openCertLightbox('assets/images/cert_devops_workshop.png', 'Introduction to DevOps Workshop — MS Club of SLIIT & Sysco LABS')">
+                    <div class="cert-img-frame">
+                        <img src="assets/images/cert_devops_workshop.png" alt="Introduction to DevOps Workshop Certificate">
+                        <span class="cert-zoom-badge"><i class="fa-solid fa-expand"></i> View Certificate</span>
+                    </div>
+                    <div class="cert-card-body">
+                        <div class="cert-index">02</div>
+                        <div class="cert-card-content">
+                            <span class="cert-issuer-tag">MS Club of SLIIT &amp; Sysco LABS</span>
+                            <h4>Introduction to DevOps Workshop</h4>
+                            <p>Introduction to CI/CD pipelines, containerization fundamentals, cloud deployment practices, and automated DevOps workflows.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="cert-card">
-                    <div class="cert-index">03</div>
-                    <div class="cert-card-content">
-                        <h4>Champions of Mini Hackathon</h4>
-                        <p>First Place winner distinction awarded for exceptional project execution and technical merit.</p>
+                <!-- 03: Champions of Mini Hackathon -->
+                <div class="cert-card" onclick="openCertLightbox('assets/images/cert_scanned.jpeg', 'Winner of Mini Hackathon \'26 — Team NovaX')">
+                    <div class="cert-img-frame">
+                        <img src="assets/images/cert_scanned.jpeg" alt="Champions of Mini Hackathon Certificate">
+                        <span class="cert-zoom-badge"><i class="fa-solid fa-expand"></i> View Certificate</span>
+                    </div>
+                    <div class="cert-card-body">
+                        <div class="cert-index">03</div>
+                        <div class="cert-card-content">
+                            <span class="cert-issuer-tag">Mini Hackathon '26 · Team NovaX</span>
+                            <h4>Champions of Mini Hackathon</h4>
+                            <p>First Place Winner distinction awarded for demonstrating exceptional innovation, creativity, and end-to-end technical execution.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="cert-card">
-                    <div class="cert-index">04</div>
-                    <div class="cert-card-content">
-                        <h4>NASA Space Apps Challenge</h4>
-                        <p>Official Certificate of Participation in the global collaborative hackathon event.</p>
+                <!-- 04: NASA Space Apps Challenge -->
+                <div class="cert-card" onclick="openCertLightbox('assets/images/cert_nasa_spaceapps.png', '2026 NASA Space Apps Challenge — Galactic Problem Solver')">
+                    <div class="cert-img-frame">
+                        <img src="assets/images/cert_nasa_spaceapps.png" alt="NASA Space Apps Challenge Certificate">
+                        <span class="cert-zoom-badge"><i class="fa-solid fa-expand"></i> View Certificate</span>
+                    </div>
+                    <div class="cert-card-body">
+                        <div class="cert-index">04</div>
+                        <div class="cert-card-content">
+                            <span class="cert-issuer-tag">NASA Space Apps Challenge · Nov 2026</span>
+                            <h4>NASA Space Apps Challenge — Galactic Problem Solver</h4>
+                            <p>Official Galactic Problem Solver certificate awarded for outstanding participation and efforts to address challenges on Earth and in space.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Certificate Full-Screen Lightbox Modal -->
+    <div class="cert-lightbox-backdrop" id="certLightboxBackdrop" onclick="if(event.target === this) closeCertLightbox()">
+        <div class="cert-lightbox-box">
+            <div class="cert-lightbox-top">
+                <h5 id="certLightboxTitle">Certificate Preview</h5>
+                <button type="button" class="pd-modal-close-btn" onclick="closeCertLightbox()" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="cert-lightbox-img-wrap">
+                <img id="certLightboxImg" src="" alt="Certificate Full View">
+            </div>
+        </div>
+    </div>
 
     <!-- ===== CONTACT (VIBRANT ROYAL BLUE) ===== -->
     <section class="contact-bleed-section" id="contact">
@@ -2322,6 +3257,1220 @@
             window.open(gmailUrl, '_blank');
         }
 
+        // ==========================================
+        // 8.5 PROJECTS SHOWCASE & INTERACTIVE DASHBOARD
+        // ==========================================
+        const portfolioProjects = [
+            {
+                id: 8,
+                name: 'DataCo Supply Chain ML Portal',
+                brandFirst: 'DataCo',
+                brandHighlight: 'SupplyChain',
+                brandIcon: 'fa-solid fa-boxes-packing',
+                bannerSub: 'Late-Delivery Prediction & Shipment Prioritization Portal',
+                cardTitle: 'DataCo — Supply Chain Late-Delivery ML & Prioritization Portal',
+                catchyTitle: 'DataCo Supply Chain Late-Delivery Prediction & Shipment Prioritization',
+                description: 'Dual-lens machine learning decision portal trained on 180,519 order items (65,752 unique orders). Combines a 5-model soft-voting ensemble (LR, DT, RF, LightGBM, Calibrated SVM) for checkout late-delivery prediction (Lens 1: 84.81% precision) with order-level risk & monetary value prioritization (Lens 2: 85.25% precision).',
+                githubLink: 'https://github.com/RuhansiDeSilva/dataco-supply-chain-ml-portal.git',
+                repoDisplay: 'github.com/RuhansiDeSilva/dataco-supply-chain-ml-portal',
+                liveDemoUrl: '/dataco-portal/',
+                category: 'ml',
+                categoryBadge: 'AI / ML',
+                categoryLabel: 'Machine Learning & Decision Systems',
+                techLine: 'Python · LightGBM · Scikit-learn · 5-Model Soft-Voting Ensemble · StratifiedGroupKFold · Interactive Web Portal',
+                tags: [
+                    { label: 'Python', icon: 'devicon-python-plain' },
+                    { label: 'Scikit-learn', icon: 'devicon-scikitlearn-plain' },
+                    { label: 'LightGBM', icon: 'fa-solid fa-cubes-stacked' },
+                    { label: 'Pandas', icon: 'devicon-pandas-plain' },
+                    { label: 'NumPy', icon: 'devicon-numpy-plain' },
+                    { label: 'JavaScript', icon: 'devicon-javascript-plain' }
+                ],
+                features: [
+                    { icon: 'fa-solid fa-layer-group', label: '5-Model Soft-Vote Ensemble' },
+                    { icon: 'fa-solid fa-filter', label: '611 → 100 Group-CV Features' },
+                    { icon: 'fa-solid fa-chart-pie', label: '12 Stages & 84 Charts Portal' }
+                ],
+                mockupKicker: '180,519 RECORDS · 5-MODEL ENSEMBLE',
+                mockupHeading: 'Dual-Lens <span>Supply Chain ML Portal</span>',
+                mockupSub: 'Interactive 6-tab portal: Overview, Project Summary, 12 Stages, Risk Simulator, 84 Charts & 509-Cell Explorer.',
+                gaugeValue: '85.3%',
+                gaugeLabel: 'Precision',
+                themeColor: '#10b981',
+                isFrontPageMockup: true,
+                image: null,
+                challengeText: 'Global supply chains suffer high SLA penalties when shipments arrive late across 180,519 order-item records (65,752 unique orders). Standard splitting leaks same-order items between train and test sets, and operations teams cannot manually inspect every order without business-value prioritization.',
+                challengeHighlights: [
+                    '180,519 order-item lines across 65,752 unique orders (~2.75 items/order)',
+                    'Zero-leakage Group-Aware splitting required across Order Id',
+                    '611 encoded features requiring 5-fold StratifiedGroupKFold dimensionality reduction'
+                ],
+                solutionText: 'Built a Dual-Lens Machine Learning & Shipment Prioritization system paired with a 6-tab interactive web portal translating all 12 stages, 84 charts, and 509 notebook cells into an executive dashboard.',
+                solutionContributions: [
+                    'Reduced 611 encoded features to the Top 100 (83.63% noise reduction, +0.0366 ROC-AUC gain via 5-Fold Group CV)',
+                    'Lens 1 (Item-Line Level): 5-model soft-voting ensemble (LR, DT, RF, LightGBM, Calibrated Linear SVM) achieving 71.69% accuracy & 84.81% precision',
+                    'Lens 2 (Order-Level Prioritization): Aggregated probabilities across 4,932 unique test orders (72.00% accuracy, 85.25% precision), isolating 575 Urgent Orders (83.83% actual late rate)'
+                ],
+                implementationText: 'Includes the full 509-cell Jupyter Notebook and an interactive web portal featuring Overview KPIs, Project Summary, 12 Stage Walkthroughs, live Risk Simulator, 84-Chart Gallery, and 509-Cell Code Explorer.',
+                implementationHighlights: [
+                    '5-Model Soft-Voting Ensemble (LR + DT + RF + LGBM + Calibrated SVM)',
+                    'Dual-Lens Order Risk & Monetary Exposure Matrix',
+                    'Interactive 6-Tab Web Portal (12 Stages, 84 Charts, Risk Simulator)'
+                ],
+                impactText: 'Isolates 575 Urgent Priority orders (only 11.66% of operational workload) that capture 83.83% late shipments and 20.63% ($502,693) of total test order value.',
+                impactMetrics: [
+                    { value: '85.25%', label: 'Lens 2 Order-Level Precision' },
+                    { value: '611 → 100', label: 'Group-CV Feature Selection' },
+                    { value: '180,519', label: 'Order-Item Records Analyzed' }
+                ]
+            },
+            {
+                id: 7,
+                name: 'AI Email Support Agent',
+                brandFirst: 'Inbox',
+                brandHighlight: 'Zero AI',
+                brandIcon: 'fa-solid fa-envelope-open-text',
+                bannerSub: 'AI-Powered Customer Support & Intent Classification Engine',
+                cardTitle: 'AI Email Support Agent — Automated Intent & Draft System',
+                catchyTitle: 'Inbox Zero, Automated: AI Email Support Agent',
+                description: 'An AI-powered agent designed to automate customer support workflows, classify multi-intent customer inquiries, and draft high-accuracy response templates with confidence validation.',
+                githubLink: 'https://github.com/RuhansiDeSilva',
+                repoDisplay: 'github.com/RuhansiDeSilva/AI-Email-Support-Agent',
+                category: 'ai',
+                categoryBadge: 'AI / AUTOMATION',
+                categoryLabel: 'AI & Automation',
+                techLine: 'Zapier AI · Python · NLP · Prompt Engineering · Gmail API · Slack Webhooks',
+                tags: [
+                    { label: 'Zapier AI', icon: 'fa-solid fa-bolt' },
+                    { label: 'Python', icon: 'devicon-python-plain' },
+                    { label: 'NLP', icon: 'fa-solid fa-brain' },
+                    { label: 'Gmail API', icon: 'fa-solid fa-envelope' },
+                    { label: 'Slack', icon: 'fa-brands fa-slack' }
+                ],
+                features: [
+                    { icon: 'fa-solid fa-tags', label: 'Multi-Intent Classification' },
+                    { icon: 'fa-solid fa-gauge-high', label: 'Confidence Scoring' },
+                    { icon: 'fa-solid fa-bell', label: 'Slack & WhatsApp Alerts' }
+                ],
+                mockupKicker: 'AI AGENT WORKFLOW · LIVE',
+                mockupHeading: 'Confidence-Validated <span>Email Drafting</span>',
+                mockupSub: 'Automated intent parsing & FAQ knowledge retrieval with instant escalation for low-confidence queries.',
+                gaugeValue: '92%',
+                gaugeLabel: 'Auto Draft',
+                themeColor: '#ec4899',
+                image: null,
+                challengeText: 'At Neha Clothing Store, customer inquiries flooded in at all hours—asking about order tracking, sizes, fabric quality, and shipments. With a small team and limited hours, response times stretched up to 12 hours, resulting in shopping cart abandonment and lost revenue.',
+                challengeHighlights: [
+                    '12 hour baseline customer response times',
+                    'High cart abandonment from support delays',
+                    'Small team unable to cover 24/7 timezones'
+                ],
+                solutionText: 'I built an intelligent, confidence-validated AI Email Support Agent using Zapier AI Agents. The system parses incoming customer inquiries, checks prompt guidelines to categorize intent, processes metadata, and automatically creates high-quality email drafts for the support staff.',
+                solutionContributions: [
+                    'Formulated NLP prompt guidelines classifying multi-intent questions (sizing, tracking, return policies)',
+                    'Constructed a dual-pathway workflow directing low-confidence outputs (< 7 score) to Slack & WhatsApp support channels',
+                    'Configured live knowledge sources referencing Neha Clothing Store documentation for zero-coding FAQ automation'
+                ],
+                implementationText: 'The solution is structured as a cloud automation workflow: when a customer emails, Zapier triggers an agent step. The agent analyzes the text against structural store knowledge, drafts a reply in Gmail, and assigns a confidence score.',
+                implementationHighlights: [
+                    'Zero-code API integration engine',
+                    'Dynamic confidence-score parsing',
+                    'Slack & WhatsApp alerting channels'
+                ],
+                impactText: 'By introducing automated drafting, the system eliminated manual spelling errors, streamlined team collaboration, and dramatically reduced active support task times.',
+                impactMetrics: [
+                    { value: '92%', label: 'Draft Automation Rate' },
+                    { value: '< 4 Min', label: 'Draft Response Speed' },
+                    { value: '94.5%', label: 'CSAT Customer Score' }
+                ]
+            },
+            {
+                id: 6,
+                name: 'ACE Frontline Web App',
+                brandFirst: 'ACE',
+                brandHighlight: 'Frontline',
+                brandIcon: 'fa-solid fa-shield-halved',
+                bannerSub: 'Enterprise Security Patrol, Shift & Dispatch Management Portal',
+                cardTitle: 'ACE Frontline — Enterprise Guard & Patrol Web App',
+                catchyTitle: 'Securing the Future: ACE Enterprise Guard Portal',
+                description: 'A comprehensive, full-stack enterprise web application built for ACE Frontline Security Service with real-time checkpoint verification, shift scheduling, and JWT-authenticated incident reporting.',
+                githubLink: 'https://github.com/RuhansiDeSilva/ACE_Frontline_Security_Service_Web_App.git',
+                repoDisplay: 'github.com/RuhansiDeSilva/ACE_Frontline_Security_Service_Web_App',
+                category: 'fullstack',
+                categoryBadge: 'FULL-STACK',
+                categoryLabel: 'Full-Stack',
+                techLine: 'React.js · Spring Boot · PostgreSQL · JWT Security · REST API · Enterprise UI',
+                tags: [
+                    { label: 'React', icon: 'devicon-react-original' },
+                    { label: 'Spring Boot', icon: 'devicon-spring-plain' },
+                    { label: 'PostgreSQL', icon: 'devicon-postgresql-plain' },
+                    { label: 'Java', icon: 'devicon-java-plain' },
+                    { label: 'JWT Auth', icon: 'fa-solid fa-lock' }
+                ],
+                features: [
+                    { icon: 'fa-solid fa-location-crosshairs', label: 'Live Guard Checkpoints' },
+                    { icon: 'fa-solid fa-user-shield', label: 'JWT Role Security' },
+                    { icon: 'fa-solid fa-file-shield', label: 'Digital Audit Logs' }
+                ],
+                mockupKicker: 'ENTERPRISE PORTAL · JWT SECURED',
+                mockupHeading: 'Real-Time Patrol & <span>Incident Dispatch</span>',
+                mockupSub: 'Digital checkpoint verification and shift tracking across regional corporate locations.',
+                gaugeValue: '100%',
+                gaugeLabel: 'Audit Ready',
+                themeColor: '#10b981',
+                image: 'assets/images/security webapp.png',
+                challengeText: 'ACE Frontline Security Service manages guards across dozens of regional corporate locations. Shift schedules, live checkpoint reporting, and critical incident logs were tracked manually on paper sheets, causing delayed reporting to clients and billing disputes.',
+                challengeHighlights: [
+                    'Manual paper logs prone to data loss',
+                    'Delayed incident reports to enterprise clients',
+                    'Lack of shift accountability for active guards'
+                ],
+                solutionText: 'I developed a secure, responsive enterprise web app for both management and field guards. Managers can assign shifts and view live checkpoints, while guards can log verification checks and report real-time incidents from mobile devices.',
+                solutionContributions: [
+                    'Designed code structure across the React frontend and Spring Boot API client',
+                    'Built database schema in PostgreSQL supporting guards, checkpoints, shifts, and reports',
+                    'Integrated secure JWT token authorization, protecting admin controls from unauthorized guard devices'
+                ],
+                implementationText: 'The application uses React with modular components for the frontend. The backend uses Spring Boot with JPA, utilizing Spring Security for user authorization blocks. Live logs sync immediately to PostgreSQL.',
+                implementationHighlights: [
+                    'Spring Boot JWT State Authentication',
+                    'Relational database schema structure',
+                    'Responsive design for active field guards'
+                ],
+                impactText: 'This portal transitioned ACE Frontline Security into a modernized digital team, solving client invoicing disputes by providing verifiable digital proof of shift completion and incident timestamps.',
+                impactMetrics: [
+                    { value: '1,500+', label: 'Daily Checkpoints Logged' },
+                    { value: '40%', label: 'Reporting Delay Reduction' },
+                    { value: '100%', label: 'Digital Audit Compliance' }
+                ]
+            },
+            {
+                id: 4,
+                name: 'Employee Attrition Prediction',
+                brandFirst: 'Attrition',
+                brandHighlight: 'Guard',
+                brandIcon: 'fa-solid fa-user-check',
+                bannerSub: 'AI-Powered Workforce Churn Forecasting & HR Retention Engine',
+                cardTitle: 'AttritionGuard — Employee Churn Prediction Model',
+                catchyTitle: 'Predicting the Exit: Employee Retention Engine',
+                description: 'Predictive machine learning model identifying behavioral patterns, overtime disproportions, and satisfaction metrics to accurately forecast employee churn before resignation.',
+                githubLink: 'https://github.com/RuhansiDeSilva/employee-attrition-prediction.git',
+                repoDisplay: 'github.com/RuhansiDeSilva/employee-attrition-prediction',
+                category: 'ml',
+                categoryBadge: 'AI / ML',
+                categoryLabel: 'Machine Learning',
+                techLine: 'Python · Scikit-learn · SMOTE · Random Forest · Feature Engineering · Pandas',
+                tags: [
+                    { label: 'Python', icon: 'devicon-python-plain' },
+                    { label: 'Scikit-learn', icon: 'devicon-scikitlearn-plain' },
+                    { label: 'Pandas', icon: 'devicon-pandas-plain' },
+                    { label: 'NumPy', icon: 'devicon-numpy-plain' },
+                    { label: 'SMOTE', icon: 'fa-solid fa-scale-balanced' }
+                ],
+                features: [
+                    { icon: 'fa-solid fa-scale-balanced', label: 'SMOTE Class Balancing' },
+                    { icon: 'fa-solid fa-ranking-star', label: 'Feature Importance' },
+                    { icon: 'fa-solid fa-chart-pie', label: 'Churn Risk Scoring' }
+                ],
+                mockupKicker: 'HR ANALYTICS · RANDOM FOREST',
+                mockupHeading: 'Workforce Retention & <span>Churn Risk AI</span>',
+                mockupSub: 'Identifies high-risk attrition profiles using SMOTE-balanced behavioral and compensation features.',
+                gaugeValue: '88%',
+                gaugeLabel: 'F1-Score',
+                themeColor: '#f59e0b',
+                image: 'assets/images/attrition.png',
+                challengeText: 'Employee churn costs organizations thousands of dollars per employee due to recruitment, onboarding, and lost knowledge. Human Resources acted reactively, only noticing attrition when resignation letters arrived.',
+                challengeHighlights: [
+                    'Expensive high attrition replacement costs',
+                    'Reactive HR management strategies',
+                    'Unexplored correlations in worker data metrics'
+                ],
+                solutionText: 'I designed a machine learning retention engine. By evaluating employee profiles—like department, overtime, and work-life balance—the system flags individuals showing high statistical probability of churn, allowing HR to intervene.',
+                solutionContributions: [
+                    'Cleaned and processed behavioral datasets, resolving significant class imbalances using SMOTE',
+                    'Evaluated decision architectures comparing Logistic Regression, Random Forests, and Gradient Boosting models',
+                    'Extracted visual feature importance hierarchies to show HR exactly which factors led to attrition'
+                ],
+                implementationText: 'Built with Python and Scikit-Learn. The script parses raw employee data, calculates statistical indicators, handles categorical encoding, and trains a Random Forest model optimized with hyperparameter sweeps.',
+                implementationHighlights: [
+                    'SMOTE class imbalance resolution',
+                    'Feature importance extraction module',
+                    'Cross-validated metric checkpoints'
+                ],
+                impactText: 'The predictive checks allowed early retention intervention campaigns. During evaluation, the model accurately flagged major churn indicators, allowing HR to adjust workloads.',
+                impactMetrics: [
+                    { value: '88%', label: 'Predictive F1-Score' },
+                    { value: '15%', label: 'Attrition Cost Savings' },
+                    { value: '5 Core', label: 'Primary Risk Factors Found' }
+                ]
+            },
+            {
+                id: 1,
+                name: 'Sales Forecast Dashboard',
+                brandFirst: 'Sales',
+                brandHighlight: 'Pulse',
+                brandIcon: 'fa-solid fa-chart-line',
+                bannerSub: 'End-to-End Time-Series Demand Forecasting & Inventory BI',
+                cardTitle: 'SalesPulse — Time-Series Sales Forecast Dashboard',
+                catchyTitle: 'Forecasting Growth: Predictive Sales Intelligence Dashboard',
+                description: 'End-to-end data analytics and ARIMA time-series forecasting dashboard predicting seasonal retail demand, confidence bounds, and stockout risks to optimize warehouse inventory.',
+                githubLink: 'https://github.com/RuhansiDeSilva/Sales-forecast-Dashboard---end-to-end-project.git',
+                repoDisplay: 'github.com/RuhansiDeSilva/Sales-forecast-Dashboard',
+                category: 'analytics',
+                categoryBadge: 'DATA ANALYTICS',
+                categoryLabel: 'Data Analytics',
+                techLine: 'Python · Pandas · ARIMA · Time-Series · Statsmodels · Jupyter · Data Visualization',
+                tags: [
+                    { label: 'Python', icon: 'devicon-python-plain' },
+                    { label: 'Pandas', icon: 'devicon-pandas-plain' },
+                    { label: 'Jupyter', icon: 'devicon-jupyter-plain' },
+                    { label: 'ARIMA', icon: 'fa-solid fa-wave-square' },
+                    { label: 'Matplotlib', icon: 'fa-solid fa-chart-simple' }
+                ],
+                features: [
+                    { icon: 'fa-solid fa-wave-square', label: 'Seasonal ARIMA Model' },
+                    { icon: 'fa-solid fa-boxes-stacked', label: 'Stockout Risk Alerts' },
+                    { icon: 'fa-solid fa-chart-area', label: '95% Confidence Bounds' }
+                ],
+                mockupKicker: 'TIME-SERIES · ARIMA (2,1,2)',
+                mockupHeading: 'Seasonal Demand & <span>Inventory Forecast</span>',
+                mockupSub: 'ADF stationarity-tested forecasting pipeline reducing stockouts and excess warehouse holding costs.',
+                gaugeValue: '95.8%',
+                gaugeLabel: 'Accuracy',
+                themeColor: '#818cf8',
+                image: 'assets/images/forecasting.png',
+                challengeText: 'Retail operations frequently face stockouts on fast-selling products and financial ties on slow-moving inventory. Without reliable predictive forecasts, inventory management relies on guesses of past habits, ignoring trends and seasonal patterns.',
+                challengeHighlights: [
+                    'Lost sales from popular product stockouts',
+                    'Heavy inventory warehouse overhead costs',
+                    'Unoptimized time-series data structures'
+                ],
+                solutionText: 'I built an end-to-end time-series sales forecasting dashboard. By processing historical datasets, the dashboard forecasts demand with high accuracy and presents predictive analytics to warehouse managers.',
+                solutionContributions: [
+                    'Constructed time-series cleaning pipeline in Pandas, managing missing date inputs and outliers',
+                    'Trained and evaluated forecast accuracy comparing seasonal ARIMA algorithms',
+                    'Created clear visualizations representing forecast bounds and trend directions'
+                ],
+                implementationText: 'Developed in Python using Statsmodels and Jupyter. The model evaluates stationarity through ADF tests, fits optimal parameters using AIC checks, and outputs future demand predictions.',
+                implementationHighlights: [
+                    'Stationarity & ADF statistical tests',
+                    'Interactive forecasting plots',
+                    'AIC hyperparameter optimization'
+                ],
+                impactText: 'The dashboard helped inventory coordinators make proactive purchases, decreasing stockouts while reducing overall storage costs by cleaning out slow-moving inventory.',
+                impactMetrics: [
+                    { value: '4.2%', label: 'Forecast Error (MAPE)' },
+                    { value: '$12,000', label: 'Annual Overhead Savings' },
+                    { value: '20%', label: 'Stockout Rate Reduction' }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Health Care Insurance Prediction',
+                brandFirst: 'MediCost',
+                brandHighlight: 'AI',
+                brandIcon: 'fa-solid fa-heart-pulse',
+                bannerSub: 'Actuarial Medical Premium & Patient Risk Regression Pipeline',
+                cardTitle: 'MediCostAI — Healthcare Insurance Cost Prediction',
+                catchyTitle: 'Predicting Health Risks: Cost Estimation Model',
+                description: 'Machine learning regression pipeline trained on demographic and clinical risk indicators to uncover non-linear synergies (such as BMI × Smoking) and estimate medical insurance premiums.',
+                githubLink: 'https://github.com/RuhansiDeSilva/Health_Care_Insuarance_prediction.git',
+                repoDisplay: 'github.com/RuhansiDeSilva/Health_Care_Insuarance_prediction',
+                category: 'ml',
+                categoryBadge: 'AI / ML',
+                categoryLabel: 'Machine Learning',
+                techLine: 'Python · Scikit-learn · Regression · Cook\'s Distance · Feature Synergy · Pandas',
+                tags: [
+                    { label: 'Python', icon: 'devicon-python-plain' },
+                    { label: 'Scikit-learn', icon: 'devicon-scikitlearn-plain' },
+                    { label: 'Pandas', icon: 'devicon-pandas-plain' },
+                    { label: 'Regression', icon: 'fa-solid fa-chart-line' },
+                    { label: 'NumPy', icon: 'devicon-numpy-plain' }
+                ],
+                features: [
+                    { icon: 'fa-solid fa-dna', label: 'BMI × Smoker Synergy' },
+                    { icon: 'fa-solid fa-filter', label: 'Cook\'s Outlier Filter' },
+                    { icon: 'fa-solid fa-calculator', label: 'Instant Risk Pricing' }
+                ],
+                mockupKicker: 'CLINICAL REGRESSION · R² = 0.89',
+                mockupHeading: 'Actuarial Risk & <span>Premium Estimator</span>',
+                mockupSub: 'Captures non-linear demographic and clinical risk interactions for fair, accurate policy pricing.',
+                gaugeValue: '0.89',
+                gaugeLabel: 'R² Score',
+                themeColor: '#0ea5e9',
+                image: 'assets/images/insuarance.png',
+                challengeText: 'Insurance organizations must charge premiums that map accurately to a client\'s medical risk. Simple linear averages lead to imbalances: charging too much loses customers, while charging too little risks huge medical payouts.',
+                challengeHighlights: [
+                    'Inaccurate premium costs for complex profiles',
+                    'Failure of linear models to parse synergies (e.g. smoking + BMI)',
+                    'Legacy engines lacking transparent parameters'
+                ],
+                solutionText: 'I developed a machine learning regression pipeline that estimates medical charges based on habits, age, and demographic indicators. The project uncovers non-linear charges, such as high BMI paired with tobacco usage.',
+                solutionContributions: [
+                    'Engineered interaction dimensions to align linear modeling with exponential risk behaviors',
+                    'Automated outlier removal using Cook\'s distance on feature structures',
+                    'Validated predictions using cross-validation audits to ensure generalized accuracy'
+                ],
+                implementationText: 'Written in Python with Scikit-Learn. Categorical variables are converted via one-hot encoders. The pipeline scales features and evaluates predictions against R² and Mean Absolute Error metrics.',
+                implementationHighlights: [
+                    'Feature interaction engineering',
+                    'Outlier filtering systems',
+                    'Algorithm comparison frameworks'
+                ],
+                impactText: 'The project matches premium prices directly to risk profiles. It optimizes charge decisions, ensuring pricing remains competitive yet risk-insulated.',
+                impactMetrics: [
+                    { value: '18%', label: 'Lower MAE vs Baseline' },
+                    { value: '0.89', label: 'Regression R² Stability' },
+                    { value: '10x', label: 'Faster Premium Calculations' }
+                ]
+            },
+            {
+                id: 3,
+                name: 'Sentiment Analysis',
+                brandFirst: 'Senti',
+                brandHighlight: 'Pulse NLP',
+                brandIcon: 'fa-solid fa-comments',
+                bannerSub: 'High-Velocity Text Polarity & Customer Feedback NLP Classifier',
+                cardTitle: 'SentiPulse — NLP Text Sentiment Classification Engine',
+                catchyTitle: 'Reading Between the Lines: NLP Text Sentiment Analytics',
+                description: 'Natural Language Processing pipeline utilizing regex cleansing, lemmatization, and TF-IDF vectorization to classify customer feedback polarity and escalate negative reviews.',
+                githubLink: 'https://github.com/RuhansiDeSilva/Sentiment-Analysis-.git',
+                repoDisplay: 'github.com/RuhansiDeSilva/Sentiment-Analysis-',
+                category: 'ai',
+                categoryBadge: 'AI / NLP',
+                categoryLabel: 'AI & NLP',
+                techLine: 'Python · NLTK · TF-IDF · Naive Bayes · Scikit-learn · Text Mining · Lemmatization',
+                tags: [
+                    { label: 'Python', icon: 'devicon-python-plain' },
+                    { label: 'NLTK', icon: 'fa-solid fa-language' },
+                    { label: 'Scikit-learn', icon: 'devicon-scikitlearn-plain' },
+                    { label: 'TF-IDF', icon: 'fa-solid fa-vector-square' },
+                    { label: 'NLP', icon: 'fa-solid fa-microchip' }
+                ],
+                features: [
+                    { icon: 'fa-solid fa-broom', label: 'Regex & Lemmatization' },
+                    { icon: 'fa-solid fa-vector-square', label: 'TF-IDF Vectorization' },
+                    { icon: 'fa-solid fa-bolt', label: '10k+ Reviews / Min' }
+                ],
+                mockupKicker: 'NATURAL LANGUAGE PROCESSING',
+                mockupHeading: 'Real-Time Polarity & <span>Keyword Mining</span>',
+                mockupSub: 'Automated TF-IDF & Naive Bayes classification isolating negative customer tickets 3x faster.',
+                gaugeValue: '91.2%',
+                gaugeLabel: 'Accuracy',
+                themeColor: '#f43f5e',
+                image: null,
+                challengeText: 'Customer feedback datasets are massive and noisy. Support channels run into bottlenecks trying to read and tag reviews manually, meaning customer complaints and product failures remain hidden in deep text logs.',
+                challengeHighlights: [
+                    'Overloaded support staff reading ticket texts',
+                    'Slow response to rising complaints and errors',
+                    'Lack of quantifiable text classification metrics'
+                ],
+                solutionText: 'I built an NLP classification model that reads customer transcripts, tickets, and reviews, classifying text polarity into positive, neutral, or negative classes automatically.',
+                solutionContributions: [
+                    'Created text preprocessing pipelines using regex, tokenization, stop-word removal, and word lemmatization',
+                    'Implemented a vector mapping index using TF-IDF representation parameters',
+                    'Optimized Naive Bayes classifications to maximize recall on negative customer complaints'
+                ],
+                implementationText: 'Developed in Python using NLTK and Scikit-Learn. The text pipeline tokens are evaluated and transformed into numerical representations to map against classification algorithms.',
+                implementationHighlights: [
+                    'Tokenization & Lemmatization',
+                    'TF-IDF text weights processing',
+                    'Optimized Naive Bayes Classifier'
+                ],
+                impactText: 'This automated NLP model screens large volumes of submissions, letting customer care teams isolate and resolve negative feedback 3x faster than manual oversight.',
+                impactMetrics: [
+                    { value: '91.2%', label: 'Classification Accuracy' },
+                    { value: '10k+', label: 'Reviews Parsed Per Minute' },
+                    { value: '3x', label: 'Support Escalation Velocity' }
+                ]
+            },
+            {
+                id: 5,
+                name: 'Student Placement Prediction',
+                brandFirst: 'Career',
+                brandHighlight: 'Path AI',
+                brandIcon: 'fa-solid fa-graduation-cap',
+                bannerSub: 'Deep Learning Academic Placement & Migration Forecaster',
+                cardTitle: 'CareerPathAI — Student Placement & Migration Predictor',
+                catchyTitle: 'Pathway to Success: ML Student Placement Predictor',
+                description: 'Neural Network and machine learning classification system analyzing academic GPA, internship history, and technical assessments to project career placement probabilities.',
+                githubLink: 'https://github.com/RuhansiDeSilva/Student-Migration-Placement-Prediction.git',
+                repoDisplay: 'github.com/RuhansiDeSilva/Student-Migration-Placement-Prediction',
+                category: 'ml',
+                categoryBadge: 'AI / ML',
+                categoryLabel: 'Machine Learning',
+                techLine: 'Python · TensorFlow · Neural Networks · Plotly · Scikit-learn · Predictive Analytics',
+                tags: [
+                    { label: 'Python', icon: 'devicon-python-plain' },
+                    { label: 'TensorFlow', icon: 'devicon-tensorflow-original' },
+                    { label: 'Scikit-learn', icon: 'devicon-scikitlearn-plain' },
+                    { label: 'Plotly', icon: 'fa-solid fa-chart-column' },
+                    { label: 'Pandas', icon: 'devicon-pandas-plain' }
+                ],
+                features: [
+                    { icon: 'fa-solid fa-network-wired', label: 'Neural Network Layers' },
+                    { icon: 'fa-solid fa-chart-column', label: 'Plotly Visual Analytics' },
+                    { icon: 'fa-solid fa-compass', label: 'Career Track Guidance' }
+                ],
+                mockupKicker: 'TENSORFLOW · DEEP LEARNING',
+                mockupHeading: 'Academic Placement & <span>Career Forecaster</span>',
+                mockupSub: 'Multi-factor neural classifier evaluating GPA, internships, and assessment scores for placement readiness.',
+                gaugeValue: '89.5%',
+                gaugeLabel: 'Accuracy',
+                themeColor: '#3b82f6',
+                image: null,
+                challengeText: 'Students face difficult choices selecting career fields or colleges. Academic departments lack data to guide students, as traditional averages skip indicators like internship history or specialized test marks.',
+                challengeHighlights: [
+                    'Students making specialized career picks blindly',
+                    'Departments lacking predictive academic metrics',
+                    'Underrepresented factors in placement forecasts'
+                ],
+                solutionText: 'I built a predictive classification engine mapping academic, extracurricular, and internship histories to project placement outcomes, aiding student placement guidance.',
+                solutionContributions: [
+                    'Analyzed academic records to isolate predictors of placement success',
+                    'Trained deep models comparing Neural Networks and decision classifiers',
+                    'Assembled interactive charts using Plotly to clarify predictive outcomes'
+                ],
+                implementationText: 'Written in Python with TensorFlow. Performs automatic encoding, feature standardizations, and runs prediction scripts to output placement probability tables.',
+                implementationHighlights: [
+                    'Neural Network layers classification',
+                    'Feature weight correlation checks',
+                    'Plotly interactive diagrams'
+                ],
+                impactText: 'This engine reduces placement planning times, letting advisors target support to students with high placement barriers.',
+                impactMetrics: [
+                    { value: '89.5%', label: 'Model Prediction Accuracy' },
+                    { value: '250+', label: 'Students Successfully Guided' },
+                    { value: '95%', label: 'Advisor Manual Planning Saved' }
+                ]
+            }
+        ];
+
+        function renderProjectsGrid(filterCat = 'all') {
+            const grid = document.getElementById('projectsShowcaseGrid');
+            if (!grid) return;
+
+            const list = filterCat === 'all'
+                ? portfolioProjects
+                : portfolioProjects.filter(p => p.category === filterCat);
+
+            grid.innerHTML = list.map(proj => {
+                const featHtml = proj.features.map(f => `
+                    <div class="vp-mini-feat">
+                        <i class="${f.icon}"></i>
+                        <span>${f.label}</span>
+                    </div>
+                `).join('');
+
+                const stripIconsHtml = proj.tags.map(t => `
+                    <span class="vp-strip-item">
+                        <i class="${t.icon}"></i> ${t.label}
+                    </span>
+                `).join('');
+
+                const rightMockupContent = proj.isFrontPageMockup
+                    ? `<div style="background:#0b1120; border-radius:7px; padding:9px; color:#f8fafc; font-family:var(--font-sans); border:1px solid rgba(56,189,248,0.25); margin-bottom:6px;">
+                           <!-- Mini Header of DataCo Portal -->
+                           <div style="display:flex; align-items:center; justify-content:space-between; padding-bottom:6px; margin-bottom:6px; border-bottom:1px solid rgba(255,255,255,0.08);">
+                               <div style="display:flex; align-items:center; gap:5px;">
+                                   <span style="width:14px; height:14px; border-radius:4px; background:#3b82f6; display:inline-flex; align-items:center; justify-content:center; font-size:0.45rem;">📦</span>
+                                   <strong style="font-size:0.56rem; color:#ffffff;">DataCo Supply Chain — ML Portal</strong>
+                               </div>
+                               <div style="display:flex; gap:3px; font-size:0.4rem; color:#94a3b8;">
+                                   <span style="background:#1e293b; color:#38bdf8; padding:1.5px 4px; border-radius:3px; font-weight:700;">Overview</span>
+                                   <span style="background:#1e293b; padding:1.5px 4px; border-radius:3px;">12 Stages</span>
+                                   <span style="background:#1e293b; padding:1.5px 4px; border-radius:3px;">Simulator</span>
+                                   <span style="background:#1e293b; padding:1.5px 4px; border-radius:3px;">84 Charts</span>
+                               </div>
+                           </div>
+                           <!-- Mini Hero Tags -->
+                           <div style="display:flex; flex-wrap:wrap; gap:3px; margin-bottom:5px;">
+                               <span style="font-size:0.38rem; background:rgba(16,185,129,0.18); color:#34d399; padding:1.5px 5px; border-radius:10px; font-weight:700;">180,519 RECORDS</span>
+                               <span style="font-size:0.38rem; background:rgba(139,92,246,0.18); color:#c4b5fd; padding:1.5px 5px; border-radius:10px; font-weight:700;">65,752 ORDERS</span>
+                               <span style="font-size:0.38rem; background:rgba(59,130,246,0.18); color:#93c5fd; padding:1.5px 5px; border-radius:10px; font-weight:700;">5-MODEL ENSEMBLE</span>
+                           </div>
+                           <!-- Mini KPI Grid matching actual DataCo Portal Front Page -->
+                           <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:4px;">
+                               <div style="background:#151f32; border:1px solid rgba(255,255,255,0.07); border-radius:4px; padding:4px 5px;">
+                                   <div style="font-size:0.38rem; color:#94a3b8;">Dataset Scale</div>
+                                   <div style="font-family:var(--font-mono); font-size:0.62rem; font-weight:800; color:#38bdf8;">180,519</div>
+                                   <div style="height:2px; background:#3b82f6; border-radius:2px; margin-top:2px;"></div>
+                               </div>
+                               <div style="background:#151f32; border:1px solid rgba(255,255,255,0.07); border-radius:4px; padding:4px 5px;">
+                                   <div style="font-size:0.38rem; color:#94a3b8;">Feature Selection</div>
+                                   <div style="font-family:var(--font-mono); font-size:0.62rem; font-weight:800; color:#34d399;">611 → 100</div>
+                                   <div style="height:2px; background:#10b981; border-radius:2px; margin-top:2px; width:84%;"></div>
+                               </div>
+                               <div style="background:#151f32; border:1px solid rgba(255,255,255,0.07); border-radius:4px; padding:4px 5px;">
+                                   <div style="font-size:0.38rem; color:#94a3b8;">Lens 2 Precision</div>
+                                   <div style="font-family:var(--font-mono); font-size:0.62rem; font-weight:800; color:#f59e0b;">85.25%</div>
+                                   <div style="height:2px; background:#f59e0b; border-radius:2px; margin-top:2px; width:85%;"></div>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="vp-mockup-dashboard-ui">
+                           <div class="vp-mockup-text-col">
+                               <div class="vp-mockup-heading">${proj.mockupHeading}</div>
+                           </div>
+                           <span class="vp-mockup-btn-fake">Open Live Portal ↗</span>
+                       </div>`
+                    : proj.image
+                    ? `<img src="${proj.image}" alt="${proj.name}" class="vp-mockup-screenshot">
+                       <div class="vp-mockup-dashboard-ui">
+                           <div class="vp-mockup-text-col">
+                               <div class="vp-mockup-heading">${proj.mockupHeading}</div>
+                           </div>
+                           <span class="vp-mockup-btn-fake">Interactive Preview ↗</span>
+                       </div>`
+                    : `<div class="vp-mockup-dashboard-ui" style="margin:auto 0;">
+                           <div class="vp-mockup-text-col">
+                               <span class="vp-mockup-kicker">${proj.mockupKicker}</span>
+                               <div class="vp-mockup-heading">${proj.mockupHeading}</div>
+                               <div class="vp-mockup-sub">${proj.mockupSub}</div>
+                               <span class="vp-mockup-btn-fake">Explore Dashboard ↗</span>
+                           </div>
+                           <div class="vp-gauge-circle">
+                               <span class="vp-gauge-val">${proj.gaugeValue}</span>
+                               <span class="vp-gauge-lbl">${proj.gaugeLabel}</span>
+                           </div>
+                       </div>`;
+
+                const viewLiveAction = proj.liveDemoUrl
+                    ? `<a href="${proj.liveDemoUrl}" target="_blank" rel="noopener noreferrer" class="vp-footer-link">
+                           View live <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                       </a>`
+                    : `<button type="button" class="vp-footer-link" onclick="openProjectDashboard(${proj.id})">
+                           View live <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                       </button>`;
+
+                const bannerClickAttr = proj.liveDemoUrl
+                    ? `onclick="window.open('${proj.liveDemoUrl}', '_blank')"`
+                    : `onclick="openProjectDashboard(${proj.id})"`;
+
+                return `
+                    <article class="venuja-proj-card" data-category="${proj.category}">
+                        <!-- Top Graphical Showcase Banner (DengueRisk Reference Style) -->
+                        <div class="vp-banner-outer" ${bannerClickAttr} style="cursor:pointer;">
+                            <div class="vp-banner-board">
+                                <div class="vp-banner-main">
+                                    <!-- Left Mini Infographic Column -->
+                                    <div class="vp-banner-left">
+                                        <div class="vp-brand-row">
+                                            <div class="vp-brand-icon">
+                                                <i class="${proj.brandIcon}"></i>
+                                            </div>
+                                            <div class="vp-brand-title">${proj.brandFirst}<span>${proj.brandHighlight}</span></div>
+                                        </div>
+                                        <div class="vp-brand-sub">${proj.bannerSub}</div>
+                                        <div class="vp-brand-accent-line"></div>
+                                        <div class="vp-brand-mini-desc">${proj.description}</div>
+                                        <div class="vp-key-features-lbl"><i class="fa-regular fa-square-check"></i> KEY FEATURES</div>
+                                        <div class="vp-mini-features-row">
+                                            ${featHtml}
+                                        </div>
+                                    </div>
+
+                                    <!-- Right Dark Dashboard App Preview -->
+                                    <div class="vp-dark-mockup">
+                                        <div class="vp-mockup-bar">
+                                            <div class="vp-mockup-dots"><span></span><span></span><span></span></div>
+                                            <div class="vp-mockup-nav">
+                                                <span class="active">Dashboard</span>
+                                                <span>Simulator</span>
+                                                <span>Pipeline</span>
+                                                <span>Metrics</span>
+                                            </div>
+                                        </div>
+                                        <div class="vp-mockup-body">
+                                            ${rightMockupContent}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Tech Stack Strip -->
+                                <div class="vp-banner-tech-strip">
+                                    <div class="vp-tech-strip-label"><i class="fa-solid fa-code"></i> TECH STACK</div>
+                                    <div class="vp-tech-strip-icons">
+                                        ${stripIconsHtml}
+                                    </div>
+                                </div>
+
+                                <!-- Bottom GitHub Pill -->
+                                <div class="vp-banner-repo-pill">
+                                    <i class="fa-brands fa-github" style="font-size:0.85rem;"></i>
+                                    <div>github.com/<span>${proj.repoDisplay.replace('github.com/', '')}</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Card Content (Venuja Screenshot Layout) -->
+                        <div class="vp-card-body">
+                            <span class="vp-cat-badge">${proj.categoryBadge}</span>
+                            <h3 class="vp-card-title" ${bannerClickAttr}>${proj.cardTitle}</h3>
+                            <div class="vp-card-tech-line">${proj.techLine}</div>
+                            <p class="vp-card-desc">${proj.description}</p>
+
+                            <div class="vp-card-footer">
+                                ${viewLiveAction}
+                                <a href="${proj.githubLink}" target="_blank" rel="noopener noreferrer" class="vp-footer-link">
+                                    GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        function filterProjects(cat, btnEl) {
+            document.querySelectorAll('.proj-filter-btn').forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            renderProjectsGrid(cat);
+        }
+
+        // Interactive Project Dashboard Modal (Ported from ProjectDetails.tsx)
+        let activeProjId = null;
+        let activeDashTab = 'simulator';
+
+        function openProjectDashboard(projId) {
+            activeProjId = projId;
+            activeDashTab = 'simulator';
+            renderProjectDashboardModal();
+            const backdrop = document.getElementById('projDashBackdrop');
+            if (backdrop) {
+                backdrop.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeProjectDashboard() {
+            const backdrop = document.getElementById('projDashBackdrop');
+            if (backdrop) {
+                backdrop.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeProjDashOnBackdrop(e) {
+            if (e.target.id === 'projDashBackdrop') {
+                closeProjectDashboard();
+            }
+        }
+
+        function switchProjDashTab(tabName) {
+            activeDashTab = tabName;
+            renderProjectDashboardModal();
+        }
+
+        function getSimulatorHtml(proj) {
+            if (proj.id === 8) {
+                return `
+                    <div class="pd-sim-box" style="padding:18px;">
+                        <div class="pd-sim-head" style="margin-bottom:14px;">
+                            <h4><i class="fa-solid fa-boxes-packing" style="color:#38bdf8;"></i> DataCo Supply Chain ML &amp; Shipment Prioritization — Live Portal</h4>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <span class="pd-hero-badge" style="margin:0;">12 Stages · 84 Charts · 509 Cells</span>
+                                <a href="dataco-portal/index.html" target="_blank" rel="noopener noreferrer" class="pd-tab-trigger" style="text-decoration:none; padding:6px 12px; font-size:0.78rem; background:var(--royal-blue); color:#fff; border-color:var(--royal-blue);">
+                                    Open Full Screen <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="border-radius:10px; overflow:hidden; border:1px solid rgba(255,255,255,0.14); background:#0b1120;">
+                            <iframe src="dataco-portal/index.html" title="DataCo Supply Chain ML Portal Live Demo" style="width:100%; height:640px; border:0; display:block;"></iframe>
+                        </div>
+                    </div>
+                `;
+            }
+            if (proj.id === 1) {
+                return `
+                    <div class="pd-sim-box">
+                        <div class="pd-sim-head">
+                            <h4><i class="fa-solid fa-chart-line" style="color:#38bdf8;"></i> ARIMA Demand &amp; Sales Forecast Simulator</h4>
+                            <span class="pd-hero-badge" style="margin:0;">v2.4 Live Model</span>
+                        </div>
+                        <div class="pd-sim-grid">
+                            <div>
+                                <div class="pd-ctrl-group">
+                                    <label>Promotion Budget ($): <strong id="sim1PromoVal">$8,500</strong></label>
+                                    <input type="range" class="pd-range" id="sim1Promo" min="1000" max="25000" step="500" value="8500" oninput="updateSim1()">
+                                </div>
+                                <div class="pd-ctrl-group">
+                                    <label>Target Fiscal Quarter:</label>
+                                    <select class="pd-select" id="sim1Quarter" onchange="updateSim1()">
+                                        <option value="Q1">Q1 (Baseline)</option>
+                                        <option value="Q2">Q2 (+5% Spring)</option>
+                                        <option value="Q3">Q3 (+15% Back-to-School)</option>
+                                        <option value="Q4" selected>Q4 (+40% Holiday Peak)</option>
+                                    </select>
+                                </div>
+                                <div class="pd-ctrl-group">
+                                    <label>Seasonal Demand Index:</label>
+                                    <select class="pd-select" id="sim1Season" onchange="updateSim1()">
+                                        <option value="low">LOW</option>
+                                        <option value="medium">MEDIUM</option>
+                                        <option value="peak" selected>PEAK</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="pd-out-box">
+                                <div class="pd-out-lbl">Forecasted Quarterly Revenue</div>
+                                <div class="pd-out-val" id="sim1OutRev">$97,902</div>
+                                <div class="pd-out-sub" id="sim1OutBounds">95% Confidence: $89,091 – $106,713</div>
+                                <div style="margin-top:12px; font-size:0.8rem; color:#10b981; font-weight:600;" id="sim1OutRisk">✓ Safe Inventory Buffer (MAPE: 4.2%)</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            if (proj.id === 2) {
+                return `
+                    <div class="pd-sim-box">
+                        <div class="pd-sim-head">
+                            <h4><i class="fa-solid fa-heart-pulse" style="color:#38bdf8;"></i> Medical Premium Risk Calculation Engine</h4>
+                            <span class="pd-hero-badge" style="margin:0;">Regression R² = 0.89</span>
+                        </div>
+                        <div class="pd-sim-grid">
+                            <div>
+                                <div class="pd-ctrl-group">
+                                    <label>Patient Age: <strong id="sim2AgeVal">34 Years</strong></label>
+                                    <input type="range" class="pd-range" id="sim2Age" min="18" max="65" value="34" oninput="updateSim2()">
+                                </div>
+                                <div class="pd-ctrl-group">
+                                    <label>Body Mass Index (BMI): <strong id="sim2BmiVal">27.5</strong></label>
+                                    <input type="range" class="pd-range" id="sim2Bmi" min="16" max="45" step="0.5" value="27.5" oninput="updateSim2()">
+                                </div>
+                                <div class="pd-ctrl-group">
+                                    <label>Tobacco / Smoking Status:</label>
+                                    <select class="pd-select" id="sim2Smoker" onchange="updateSim2()">
+                                        <option value="no" selected>Non-Smoker (Standard Risk)</option>
+                                        <option value="yes">Regular Smoker (+High Synergy Risk)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="pd-out-box">
+                                <div class="pd-out-lbl">Predicted Annual Premium</div>
+                                <div class="pd-out-val" id="sim2OutPrem">$13,210 / Year</div>
+                                <div class="pd-out-sub" id="sim2OutTier">Risk Category: <strong>Standard Preferred</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            if (proj.id === 3) {
+                return `
+                    <div class="pd-sim-box">
+                        <div class="pd-sim-head">
+                            <h4><i class="fa-solid fa-comments" style="color:#38bdf8;"></i> NLP Text Sentiment &amp; Polarity Classifier</h4>
+                            <span class="pd-hero-badge" style="margin:0;">NLTK / TF-IDF</span>
+                        </div>
+                        <div class="pd-sim-grid">
+                            <div>
+                                <div class="pd-ctrl-group">
+                                    <label>Customer Review / Support Ticket Text:</label>
+                                    <textarea class="pd-textarea" id="sim3Text" rows="3" oninput="updateSim3()">Customer support was remarkably fast, resolved my database issue and followed up the next day!</textarea>
+                                </div>
+                                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                                    <button type="button" class="pd-tab-trigger" onclick="setSim3Preset('Customer support was remarkably fast, resolved my database issue and followed up the next day!')">Positive Sample</button>
+                                    <button type="button" class="pd-tab-trigger" onclick="setSim3Preset('The checkout portal crashed, lost my cart items, and customer care was slow and unhelpful.')">Negative Sample</button>
+                                </div>
+                            </div>
+                            <div class="pd-out-box">
+                                <div class="pd-out-lbl">Classified Sentiment Polarity</div>
+                                <div class="pd-out-val" id="sim3OutLabel" style="color:#10b981;">Positive (96%)</div>
+                                <div class="pd-out-sub" id="sim3OutTokens">Detected Indicators: +fast, +resolved</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            if (proj.id === 4) {
+                return `
+                    <div class="pd-sim-box">
+                        <div class="pd-sim-head">
+                            <h4><i class="fa-solid fa-user-check" style="color:#38bdf8;"></i> Employee Churn &amp; Retention Risk Forecaster</h4>
+                            <span class="pd-hero-badge" style="margin:0;">SMOTE / Random Forest</span>
+                        </div>
+                        <div class="pd-sim-grid">
+                            <div>
+                                <div class="pd-ctrl-group">
+                                    <label>Monthly Salary ($): <strong id="sim4SalVal">$5,500</strong></label>
+                                    <input type="range" class="pd-range" id="sim4Sal" min="2500" max="15000" step="500" value="5500" oninput="updateSim4()">
+                                </div>
+                                <div class="pd-ctrl-group">
+                                    <label>Overtime Workload:</label>
+                                    <select class="pd-select" id="sim4Ot" onchange="updateSim4()">
+                                        <option value="none">NONE</option>
+                                        <option value="moderate">MODERATE</option>
+                                        <option value="heavy" selected>HEAVY (+High Flight Risk)</option>
+                                    </select>
+                                </div>
+                                <div class="pd-ctrl-group">
+                                    <label>Job Satisfaction (1-5): <strong id="sim4SatVal">2 / 5</strong></label>
+                                    <input type="range" class="pd-range" id="sim4Sat" min="1" max="5" value="2" oninput="updateSim4()">
+                                </div>
+                            </div>
+                            <div class="pd-out-box">
+                                <div class="pd-out-lbl">Predicted Attrition Probability</div>
+                                <div class="pd-out-val" id="sim4OutRisk" style="color:#ef4444;">85%</div>
+                                <div class="pd-out-sub" id="sim4OutStatus">Assessment: <strong>Critical Flight Risk</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            if (proj.id === 5) {
+                return `
+                    <div class="pd-sim-box">
+                        <div class="pd-sim-head">
+                            <h4><i class="fa-solid fa-graduation-cap" style="color:#38bdf8;"></i> Student Academic Placement Classifier</h4>
+                            <span class="pd-hero-badge" style="margin:0;">TensorFlow Neural Net</span>
+                        </div>
+                        <div class="pd-sim-grid">
+                            <div>
+                                <div class="pd-ctrl-group">
+                                    <label>Cumulative GPA: <strong id="sim5GpaVal">3.60</strong></label>
+                                    <input type="range" class="pd-range" id="sim5Gpa" min="2.0" max="4.0" step="0.05" value="3.6" oninput="updateSim5()">
+                                </div>
+                                <div class="pd-ctrl-group">
+                                    <label>Completed Internships: <strong id="sim5IntVal">2</strong></label>
+                                    <input type="range" class="pd-range" id="sim5Int" min="0" max="3" value="2" oninput="updateSim5()">
+                                </div>
+                                <div class="pd-ctrl-group">
+                                    <label>Technical Assessment Score: <strong id="sim5ScoreVal">85%</strong></label>
+                                    <input type="range" class="pd-range" id="sim5Score" min="40" max="100" value="85" oninput="updateSim5()">
+                                </div>
+                            </div>
+                            <div class="pd-out-box">
+                                <div class="pd-out-lbl">Predicted Placement Probability</div>
+                                <div class="pd-out-val" id="sim5OutProb">98%</div>
+                                <div class="pd-out-sub" id="sim5OutTrack">Recommended Track: <strong>Tier 1 AI / SWE Track</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            if (proj.id === 6) {
+                return `
+                    <div class="pd-sim-box">
+                        <div class="pd-sim-head">
+                            <h4><i class="fa-solid fa-shield-halved" style="color:#38bdf8;"></i> Enterprise Security Patrol &amp; Dispatch Console</h4>
+                            <span class="pd-hero-badge" style="margin:0;">Spring Boot / JWT</span>
+                        </div>
+                        <div class="pd-sim-grid">
+                            <div>
+                                <div class="pd-ctrl-group">
+                                    <label>Corporate Checkpoint Location:</label>
+                                    <select class="pd-select" id="sim6Loc" onchange="updateSim6()">
+                                        <option value="Sector 4 - Data Center Vault">Sector 4 - Data Center Vault</option>
+                                        <option value="Executive Wing - 12th Floor">Executive Wing - 12th Floor</option>
+                                        <option value="Main Entrance Gate Alpha">Main Entrance Gate Alpha</option>
+                                    </select>
+                                </div>
+                                <div class="pd-ctrl-group">
+                                    <label>Inspection / Incident Status:</label>
+                                    <select class="pd-select" id="sim6Status" onchange="updateSim6()">
+                                        <option value="Routine Clear">Routine Clear (200 OK Verified)</option>
+                                        <option value="Door Unsecured">Door Unsecured (Alert Dispatch)</option>
+                                        <option value="Breach Alarm">Breach Alarm (Immediate Escalation)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="pd-out-box">
+                                <div class="pd-out-lbl">PostgreSQL Audit Log Dispatch</div>
+                                <div class="pd-out-val" id="sim6OutState" style="color:#10b981; font-size:1.5rem;">✓ Checkpoint Verified</div>
+                                <div class="pd-out-sub" id="sim6OutLoc">Sector 4 - Data Center Vault · JWT Signed</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            // Project 7: AI Email Support Agent
+            return `
+                <div class="pd-sim-box">
+                    <div class="pd-sim-head">
+                        <h4><i class="fa-solid fa-envelope-open-text" style="color:#38bdf8;"></i> Zapier AI Support Agent Simulator</h4>
+                        <span class="pd-hero-badge" style="margin:0;">Zapier / NLP</span>
+                    </div>
+                    <div class="pd-sim-grid">
+                        <div>
+                            <div class="pd-ctrl-group">
+                                <label>Inbound Customer Inquiry Scenario:</label>
+                                <select class="pd-select" id="sim7Scenario" onchange="updateSim7()">
+                                    <option value="exchange">Wrong Size Delivered (High Confidence &gt; 9.0)</option>
+                                    <option value="tracking">Where is my order? (High Confidence &gt; 9.0)</option>
+                                    <option value="unusual">Custom Bulk Wholesale Request (Low Confidence &lt; 5.0)</option>
+                                </select>
+                            </div>
+                            <p style="font-size:0.82rem; color:#94a3b8; line-height:1.5;">
+                                Select an inbound email scenario to observe how the AI agent evaluates intent confidence and routes between Gmail auto-drafting and Slack/WhatsApp human escalation.
+                            </p>
+                        </div>
+                        <div class="pd-out-box" style="text-align:left;">
+                            <div class="pd-out-lbl" id="sim7Conf">CONFIDENCE SCORE: 9.7 / 10 (AUTO-DRAFTED)</div>
+                            <div style="font-size:0.9rem; font-weight:700; color:#38bdf8; margin:8px 0;" id="sim7Action">Action: Auto-Drafted in Gmail API + Tagged #SizeExchange</div>
+                            <div class="pd-out-sub" id="sim7Draft" style="background:rgba(255,255,255,0.04); padding:10px; border-radius:6px; font-size:0.8rem;">
+                                "Hi Sarah! I'm so sorry we sent the wrong size for Order #1042. I've automatically drafted a prepaid return shipping label and reserved an M in our warehouse."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProjectDashboardModal() {
+            const modal = document.getElementById('projDashModal');
+            const proj = portfolioProjects.find(p => p.id === activeProjId);
+            if (!modal || !proj) return;
+
+            const kpisHtml = proj.impactMetrics.map(m => `
+                <div class="pd-kpi-box">
+                    <div class="pd-kpi-val">${m.value}</div>
+                    <div class="pd-kpi-lbl">${m.label}</div>
+                </div>
+            `).join('');
+
+            let tabBodyHtml = '';
+            if (activeDashTab === 'simulator') {
+                const screenshotHtml = proj.image ? `
+                    <div class="pd-info-card" style="margin-top:20px;">
+                        <h4><i class="fa-solid fa-desktop" style="color:#38bdf8;"></i> Production System Interface Preview</h4>
+                        <img src="${proj.image}" alt="${proj.name}" style="width:100%; border-radius:8px; border:1px solid rgba(255,255,255,0.1); margin-top:8px;">
+                    </div>
+                ` : '';
+                tabBodyHtml = getSimulatorHtml(proj) + screenshotHtml;
+            } else if (activeDashTab === 'challenge') {
+                tabBodyHtml = `
+                    <div class="pd-two-cols">
+                        <div class="pd-info-card">
+                            <h4><i class="fa-solid fa-triangle-exclamation" style="color:#f59e0b;"></i> The Core Challenge</h4>
+                            <p>${proj.challengeText}</p>
+                            <ul class="pd-info-list">
+                                ${proj.challengeHighlights.map(c => `<li><i class="fa-solid fa-circle-dot"></i> <span>${c}</span></li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="pd-info-card">
+                            <h4><i class="fa-solid fa-lightbulb" style="color:#10b981;"></i> Engineered Solution &amp; Contributions</h4>
+                            <p>${proj.solutionText}</p>
+                            <ul class="pd-info-list">
+                                ${proj.solutionContributions.map(s => `<li><i class="fa-solid fa-check"></i> <span>${s}</span></li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            } else if (activeDashTab === 'pipeline') {
+                tabBodyHtml = `
+                    <div class="pd-info-card">
+                        <h4><i class="fa-solid fa-gears" style="color:#38bdf8;"></i> Technical Architecture &amp; Implementation</h4>
+                        <p>${proj.implementationText}</p>
+                        <ul class="pd-info-list">
+                            ${proj.implementationHighlights.map(h => `<li><i class="fa-solid fa-code-commit"></i> <span>${h}</span></li>`).join('')}
+                        </ul>
+                        <div style="margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08);">
+                            <div style="font-family:var(--font-mono); font-size:0.75rem; color:#94a3b8; margin-bottom:8px;">CORE STACK</div>
+                            <div style="color:#38bdf8; font-weight:600; font-size:0.9rem;">${proj.techLine}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            modal.innerHTML = `
+                <div class="pd-modal-topbar">
+                    <div class="pd-modal-breadcrumbs">
+                        <span>Portfolio</span> / <span>Projects</span> / <strong>${proj.name}</strong>
+                    </div>
+                    <div class="pd-modal-top-actions">
+                        <a href="${proj.githubLink}" target="_blank" rel="noopener noreferrer" class="pd-tab-trigger" style="text-decoration:none;">
+                            <i class="fa-brands fa-github"></i> View Source
+                        </a>
+                        <button type="button" class="pd-modal-close-btn" onclick="closeProjectDashboard()" aria-label="Close">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="pd-modal-body">
+                    <div class="pd-hero-head">
+                        <span class="pd-hero-badge"><i class="${proj.brandIcon}"></i> ${proj.categoryLabel}</span>
+                        <h2 class="pd-hero-title">${proj.catchyTitle}</h2>
+                        <p class="pd-hero-desc">${proj.description}</p>
+                    </div>
+
+                    <div class="pd-kpi-row">
+                        ${kpisHtml}
+                    </div>
+
+                    <div class="pd-nav-tabs">
+                        <button type="button" class="pd-tab-trigger ${activeDashTab === 'simulator' ? 'active' : ''}" onclick="switchProjDashTab('simulator')">
+                            <i class="fa-solid fa-sliders"></i> Interactive Playground
+                        </button>
+                        <button type="button" class="pd-tab-trigger ${activeDashTab === 'challenge' ? 'active' : ''}" onclick="switchProjDashTab('challenge')">
+                            <i class="fa-solid fa-bullseye"></i> Challenge &amp; Solution
+                        </button>
+                        <button type="button" class="pd-tab-trigger ${activeDashTab === 'pipeline' ? 'active' : ''}" onclick="switchProjDashTab('pipeline')">
+                            <i class="fa-solid fa-diagram-project"></i> Pipeline Architecture
+                        </button>
+                    </div>
+
+                    <div>${tabBodyHtml}</div>
+                </div>
+            `;
+        }
+
+        // Simulator Live Calculation Handlers
+        function updateSim1() {
+            const promo = Number(document.getElementById('sim1Promo').value);
+            const q = document.getElementById('sim1Quarter').value;
+            const s = document.getElementById('sim1Season').value;
+            document.getElementById('sim1PromoVal').textContent = '$' + promo.toLocaleString();
+            const qMul = q === 'Q4' ? 1.4 : q === 'Q3' ? 1.15 : q === 'Q2' ? 1.05 : 0.95;
+            const sMul = s === 'peak' ? 1.35 : s === 'medium' ? 1.1 : 0.95;
+            const rev = Math.round((28000 + promo * 2.8) * qMul * sMul);
+            document.getElementById('sim1OutRev').textContent = '$' + rev.toLocaleString();
+            document.getElementById('sim1OutBounds').textContent = `95% Confidence: $${Math.round(rev * 0.91).toLocaleString()} – $${Math.round(rev * 1.09).toLocaleString()}`;
+            const riskEl = document.getElementById('sim1OutRisk');
+            if (promo > 14000 && s === 'peak') {
+                riskEl.textContent = '⚠ High Stockout Warning — Increase Safety Buffer';
+                riskEl.style.color = '#f59e0b';
+            } else {
+                riskEl.textContent = '✓ Safe Inventory Buffer (MAPE: 4.2%)';
+                riskEl.style.color = '#10b981';
+            }
+        }
+
+        function updateSim2() {
+            const age = Number(document.getElementById('sim2Age').value);
+            const bmi = Number(document.getElementById('sim2Bmi').value);
+            const smoker = document.getElementById('sim2Smoker').value === 'yes';
+            document.getElementById('sim2AgeVal').textContent = age + ' Years';
+            document.getElementById('sim2BmiVal').textContent = bmi.toFixed(1);
+            let base = 2200 + (age * 240) + ((bmi - 20) * 320);
+            if (smoker) base += 14500 + (bmi > 30 ? 6000 : 0);
+            const prem = Math.round(base);
+            document.getElementById('sim2OutPrem').textContent = '$' + prem.toLocaleString() + ' / Year';
+            const tier = smoker ? 'High Clinical Synergy Risk' : bmi > 30 ? 'Elevated BMI Tier' : 'Standard Preferred';
+            document.getElementById('sim2OutTier').innerHTML = `Risk Category: <strong>${tier}</strong>`;
+        }
+
+        function setSim3Preset(txt) {
+            const el = document.getElementById('sim3Text');
+            if (el) { el.value = txt; updateSim3(); }
+        }
+
+        function updateSim3() {
+            const txt = (document.getElementById('sim3Text').value || '').toLowerCase();
+            const pos = ['good', 'great', 'fast', 'resolved', 'helpful', 'awesome', 'love', 'remarkably'];
+            const neg = ['bad', 'crashed', 'lost', 'slow', 'unhelpful', 'error', 'worst', 'delayed'];
+            let score = 0.5;
+            const tokens = [];
+            pos.forEach(w => { if (txt.includes(w)) { score += 0.18; tokens.push('+' + w); } });
+            neg.forEach(w => { if (txt.includes(w)) { score -= 0.2; tokens.push('-' + w); } });
+            const lblEl = document.getElementById('sim3OutLabel');
+            if (score > 0.58) {
+                lblEl.textContent = 'Positive (' + Math.min(98, Math.round(score * 100)) + '%)';
+                lblEl.style.color = '#10b981';
+            } else if (score < 0.42) {
+                lblEl.textContent = 'Negative (' + Math.min(98, Math.round((1 - score) * 100)) + '%)';
+                lblEl.style.color = '#ef4444';
+            } else {
+                lblEl.textContent = 'Neutral (64%)';
+                lblEl.style.color = '#94a3b8';
+            }
+            document.getElementById('sim3OutTokens').textContent = 'Detected Indicators: ' + (tokens.length ? tokens.join(', ') : 'neutral syntax');
+        }
+
+        function updateSim4() {
+            const sal = Number(document.getElementById('sim4Sal').value);
+            const ot = document.getElementById('sim4Ot').value;
+            const sat = Number(document.getElementById('sim4Sat').value);
+            document.getElementById('sim4SalVal').textContent = '$' + sal.toLocaleString();
+            document.getElementById('sim4SatVal').textContent = sat + ' / 5';
+            let risk = 15 + (ot === 'heavy' ? 45 : ot === 'moderate' ? 20 : 0) + (sal < 4500 ? 25 : sal < 7500 ? 10 : 0) + (sat <= 2 ? 20 : 0);
+            risk = Math.min(96, Math.max(8, risk));
+            const rEl = document.getElementById('sim4OutRisk');
+            rEl.textContent = risk + '%';
+            rEl.style.color = risk > 65 ? '#ef4444' : risk > 35 ? '#f59e0b' : '#10b981';
+            const st = risk > 65 ? 'Critical Flight Risk' : risk > 35 ? 'Moderate Retention Watch' : 'Stable Low Risk';
+            document.getElementById('sim4OutStatus').innerHTML = `Assessment: <strong>${st}</strong>`;
+        }
+
+        function updateSim5() {
+            const gpa = Number(document.getElementById('sim5Gpa').value);
+            const ints = Number(document.getElementById('sim5Int').value);
+            const sc = Number(document.getElementById('sim5Score').value);
+            document.getElementById('sim5GpaVal').textContent = gpa.toFixed(2);
+            document.getElementById('sim5IntVal').textContent = ints;
+            document.getElementById('sim5ScoreVal').textContent = sc + '%';
+            const prob = Math.min(99, Math.round(((gpa / 4.0) * 48) + (ints * 14) + ((sc / 100) * 25) + 10));
+            document.getElementById('sim5OutProb').textContent = prob + '%';
+            const tr = prob > 82 ? 'Tier 1 AI / SWE Track' : prob > 62 ? 'Enterprise Data Analyst Track' : 'Foundational Skill Track';
+            document.getElementById('sim5OutTrack').innerHTML = `Recommended Track: <strong>${tr}</strong>`;
+        }
+
+        function updateSim6() {
+            const loc = document.getElementById('sim6Loc').value;
+            const st = document.getElementById('sim6Status').value;
+            const outEl = document.getElementById('sim6OutState');
+            if (st === 'Routine Clear') {
+                outEl.textContent = '✓ Checkpoint Verified';
+                outEl.style.color = '#10b981';
+            } else {
+                outEl.textContent = '⚠ Immediate Escalation Dispatched';
+                outEl.style.color = '#ef4444';
+            }
+            document.getElementById('sim6OutLoc').textContent = loc + ' · JWT Signed';
+        }
+
+        function updateSim7() {
+            const sc = document.getElementById('sim7Scenario').value;
+            const conf = document.getElementById('sim7Conf');
+            const act = document.getElementById('sim7Action');
+            const dr = document.getElementById('sim7Draft');
+            if (sc === 'exchange') {
+                conf.textContent = 'CONFIDENCE SCORE: 9.7 / 10 (AUTO-DRAFTED)';
+                act.textContent = 'Action: Auto-Drafted in Gmail API + Tagged #SizeExchange';
+                dr.textContent = '"Hi Sarah! I\'m so sorry we sent the wrong size for Order #1042. I\'ve automatically drafted a prepaid return shipping label and reserved an M in our warehouse."';
+            } else if (sc === 'tracking') {
+                conf.textContent = 'CONFIDENCE SCORE: 9.4 / 10 (AUTO-DRAFTED)';
+                act.textContent = 'Action: Auto-Drafted in Gmail API + Courier Webhook Queried';
+                dr.textContent = '"Hello! Thank you for checking in on Order #8921. Your package is currently out for delivery with CityExpress and estimated to arrive today before 5:00 PM."';
+            } else {
+                conf.textContent = 'CONFIDENCE SCORE: 4.6 / 10 (ESCALATED TO HUMAN)';
+                act.textContent = 'Action: Dispatched High-Priority Alert to Slack #support-escalations & WhatsApp';
+                dr.textContent = '⚠ Low confidence (< 7.0): Inquiry involves custom wholesale terms outside standard FAQ parameters. Routed to Senior Account Manager.';
+            }
+        }
+
+        // Initial render of all 7 projects
+        renderProjectsGrid('all');
+
+        // Certificate Lightbox Handlers
+        function openCertLightbox(imgSrc, title) {
+            const backdrop = document.getElementById('certLightboxBackdrop');
+            const img = document.getElementById('certLightboxImg');
+            const titleEl = document.getElementById('certLightboxTitle');
+            if (backdrop && img && titleEl) {
+                img.src = imgSrc;
+                titleEl.textContent = title;
+                backdrop.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeCertLightbox() {
+            const backdrop = document.getElementById('certLightboxBackdrop');
+            if (backdrop) {
+                backdrop.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close Project Dashboard & Certificate Lightbox on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeProjectDashboard();
+                closeCertLightbox();
+            }
+        });
+
     </script>
 
     <!-- ==========================================
@@ -2351,7 +4500,6 @@
                     }
                 });
         }
-    </script>
     </script>
 </body>
 </html>
