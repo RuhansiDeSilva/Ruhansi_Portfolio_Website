@@ -2298,143 +2298,252 @@
             keyLight.position.set(5, 6, 5);
             scene.add(keyLight);
 
-            const rimLight = new THREE.DirectionalLight(0x1f56f0, 3.5);
-            rimLight.position.set(-6, -3, -4);
+            // Enhanced Studio Lighting for Crisp Feature Visibility
+            const ambientLight = new THREE.AmbientLight(0x1e293b, 2.5);
+            scene.add(ambientLight);
+
+            const frontKeyLight = new THREE.DirectionalLight(0xffffff, 3.2);
+            frontKeyLight.position.set(4, 5, 6);
+            scene.add(frontKeyLight);
+
+            const fillLight = new THREE.DirectionalLight(0x00d4ff, 2.2);
+            fillLight.position.set(-5, -2, 4);
+            scene.add(fillLight);
+
+            const rimLight = new THREE.DirectionalLight(0x1f56f0, 4.0);
+            rimLight.position.set(0, -6, -4);
             scene.add(rimLight);
 
-            const cyanGlow = new THREE.PointLight(0x00f5ff, 4.0, 8);
-            cyanGlow.position.set(0, 0.2, 2.5);
-            scene.add(cyanGlow);
+            const visorInnerGlow = new THREE.PointLight(0x00f5ff, 5.0, 7);
+            visorInnerGlow.position.set(0, 0.3, 2.0);
+            scene.add(visorInnerGlow);
 
             // Main Robot Group
             const robot = new THREE.Group();
             scene.add(robot);
 
-            // Materials
-            const darkMetalMat = new THREE.MeshStandardMaterial({
-                color: 0x0a0f1d,
-                roughness: 0.25,
-                metalness: 0.9,
+            // High-Contrast Robot Materials (Crisp Titanium & Chrome)
+            const titaniumSilverMat = new THREE.MeshStandardMaterial({
+                color: 0xdbeafe, // Bright titanium cyber white
+                roughness: 0.22,
+                metalness: 0.65,
                 flatShading: false
             });
 
-            const chromeMat = new THREE.MeshStandardMaterial({
-                color: 0x1f56f0,
-                roughness: 0.15,
+            const royalArmourMat = new THREE.MeshStandardMaterial({
+                color: 0x1f56f0, // Signature electric royal blue armour
+                roughness: 0.2,
+                metalness: 0.8
+            });
+
+            const darkCarbonMat = new THREE.MeshStandardMaterial({
+                color: 0x1e293b, // Contrast dark mechanical joints
+                roughness: 0.4,
+                metalness: 0.7
+            });
+
+            const chromePistonMat = new THREE.MeshStandardMaterial({
+                color: 0xffffff, // Polished chrome pistons
+                roughness: 0.1,
                 metalness: 0.95
             });
 
-            const glowingVisorMat = new THREE.MeshStandardMaterial({
+            const neonCyanVisorMat = new THREE.MeshStandardMaterial({
                 color: 0x00f5ff,
-                emissive: 0x00c8e6,
-                emissiveIntensity: 0.85,
-                roughness: 0.1,
-                metalness: 0.3,
+                emissive: 0x00d4ff,
+                emissiveIntensity: 1.1,
+                roughness: 0.05,
+                metalness: 0.2,
                 transparent: true,
-                opacity: 0.95
+                opacity: 0.92
             });
 
-            const eyeOpticMat = new THREE.MeshStandardMaterial({
-                color: 0xffffff,
-                emissive: 0x00ffff,
-                emissiveIntensity: 1.2
+            const pupilGlowMat = new THREE.MeshBasicMaterial({
+                color: 0xffffff
             });
 
-            // 1. Robot Head Chassis (Sculpted Sphere)
-            const headGeo = new THREE.SphereGeometry(1.2, 32, 24);
-            headGeo.scale(0.92, 1.15, 1.05);
-            const headMesh = new THREE.Mesh(headGeo, darkMetalMat);
+            const eyeRingMat = new THREE.MeshBasicMaterial({
+                color: 0x00f5ff
+            });
+
+            const ventGlowMat = new THREE.MeshBasicMaterial({
+                color: 0x00e5ff
+            });
+
+            // 1. Robot Head Base Chassis (Titanium Skull)
+            const headGeo = new THREE.SphereGeometry(1.22, 32, 26);
+            headGeo.scale(0.92, 1.16, 1.05);
+            const headMesh = new THREE.Mesh(headGeo, titaniumSilverMat);
             robot.add(headMesh);
 
-            // 2. Forehead Armour Plate
-            const browGeo = new THREE.BoxGeometry(1.3, 0.25, 0.6);
-            const browMesh = new THREE.Mesh(browGeo, chromeMat);
-            browMesh.position.set(0, 0.8, 0.85);
-            browMesh.rotation.x = -0.2;
+            // 2. Forehead & Crest Blue Armor Plating
+            const crestGeo = new THREE.BoxGeometry(0.85, 0.4, 0.95);
+            const crestMesh = new THREE.Mesh(crestGeo, royalArmourMat);
+            crestMesh.position.set(0, 0.95, 0.45);
+            crestMesh.rotation.x = -0.35;
+            robot.add(crestMesh);
+
+            // 3. Prominent Brow Armor Ridge
+            const browGeo = new THREE.BoxGeometry(1.42, 0.22, 0.5);
+            const browMesh = new THREE.Mesh(browGeo, darkCarbonMat);
+            browMesh.position.set(0, 0.58, 0.92);
+            browMesh.rotation.x = -0.15;
             robot.add(browMesh);
 
-            // 3. Cyber Curved Visor
-            const visorGeo = new THREE.CylinderGeometry(1.05, 1.05, 0.38, 32, 1, true, -Math.PI * 0.42, Math.PI * 0.84);
-            const visorMesh = new THREE.Mesh(visorGeo, glowingVisorMat);
-            visorMesh.position.set(0, 0.22, 0.35);
+            // 4. Luminous Cyber Visor (Curved Optical Shield)
+            const visorGeo = new THREE.CylinderGeometry(1.08, 1.08, 0.42, 32, 1, true, -Math.PI * 0.44, Math.PI * 0.88);
+            const visorMesh = new THREE.Mesh(visorGeo, neonCyanVisorMat);
+            visorMesh.position.set(0, 0.22, 0.32);
             robot.add(visorMesh);
 
-            // 4. Dual Ocular Optical Sensors (Pupils that focus toward cursor)
-            const eyeGeo = new THREE.SphereGeometry(0.12, 16, 16);
-            const leftEye = new THREE.Mesh(eyeGeo, eyeOpticMat);
-            leftEye.position.set(-0.35, 0.24, 1.28);
-            robot.add(leftEye);
+            // 5. Distinct Robotic Eyes (Camera Lens Oculars)
+            // Left Eye Assembly
+            const eyeBaseGeo = new THREE.CylinderGeometry(0.22, 0.22, 0.1, 24);
+            eyeBaseGeo.rotateX(Math.PI / 2);
+            const leftEyeBase = new THREE.Mesh(eyeBaseGeo, darkCarbonMat);
+            leftEyeBase.position.set(-0.38, 0.22, 1.25);
+            robot.add(leftEyeBase);
 
-            const rightEye = new THREE.Mesh(eyeGeo, eyeOpticMat);
-            rightEye.position.set(0.35, 0.24, 1.28);
-            robot.add(rightEye);
+            const leftEyeRing = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.03, 16, 32), eyeRingMat);
+            leftEyeRing.position.set(-0.38, 0.22, 1.32);
+            robot.add(leftEyeRing);
 
-            // 5. Angular Cheek Guards & Chin Guard
-            const cheekGeo = new THREE.BoxGeometry(0.3, 0.5, 0.7);
-            const leftCheek = new THREE.Mesh(cheekGeo, darkMetalMat);
-            leftCheek.position.set(-0.95, -0.15, 0.55);
-            leftCheek.rotation.y = 0.35;
+            const leftPupil = new THREE.Mesh(new THREE.SphereGeometry(0.09, 16, 16), pupilGlowMat);
+            leftPupil.position.set(-0.38, 0.22, 1.34);
+            robot.add(leftPupil);
+
+            // Right Eye Assembly
+            const rightEyeBase = new THREE.Mesh(eyeBaseGeo, darkCarbonMat);
+            rightEyeBase.position.set(0.38, 0.22, 1.25);
+            robot.add(rightEyeBase);
+
+            const rightEyeRing = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.03, 16, 32), eyeRingMat);
+            rightEyeRing.position.set(0.38, 0.22, 1.32);
+            robot.add(rightEyeRing);
+
+            const rightPupil = new THREE.Mesh(new THREE.SphereGeometry(0.09, 16, 16), pupilGlowMat);
+            rightPupil.position.set(0.38, 0.22, 1.34);
+            robot.add(rightPupil);
+
+            // 6. Sculpted Angular Cheekbones & Jawline
+            const cheekGeo = new THREE.BoxGeometry(0.32, 0.65, 0.6);
+            const leftCheek = new THREE.Mesh(cheekGeo, royalArmourMat);
+            leftCheek.position.set(-0.95, -0.22, 0.6);
+            leftCheek.rotation.set(0.1, 0.35, -0.15);
             robot.add(leftCheek);
 
-            const rightCheek = new THREE.Mesh(cheekGeo, darkMetalMat);
-            rightCheek.position.set(0.95, -0.15, 0.55);
-            rightCheek.rotation.y = -0.35;
+            const rightCheek = new THREE.Mesh(cheekGeo, royalArmourMat);
+            rightCheek.position.set(0.95, -0.22, 0.6);
+            rightCheek.rotation.set(0.1, -0.35, 0.15);
             robot.add(rightCheek);
 
-            const chinGeo = new THREE.BoxGeometry(0.65, 0.35, 0.6);
-            const chinMesh = new THREE.Mesh(chinGeo, chromeMat);
-            chinMesh.position.set(0, -0.95, 0.7);
-            chinMesh.rotation.x = 0.3;
+            // 7. Mechanical Mouth & Audio Vents
+            const mouthPlate = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.32, 0.5), darkCarbonMat);
+            mouthPlate.position.set(0, -0.45, 0.96);
+            mouthPlate.rotation.x = 0.2;
+            robot.add(mouthPlate);
+
+            // Glowing Vent Slits (Mouth Grille)
+            for (let v = 0; v < 3; v++) {
+                const ventBar = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.035, 0.05), ventGlowMat);
+                ventBar.position.set(0, -0.38 - (v * 0.07), 1.22);
+                ventBar.rotation.x = 0.2;
+                robot.add(ventBar);
+            }
+
+            // 8. Chiseled Chin Armor Guard
+            const chinMesh = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.35, 0.55), titaniumSilverMat);
+            chinMesh.position.set(0, -0.88, 0.82);
+            chinMesh.rotation.x = 0.35;
             robot.add(chinMesh);
 
-            // 6. Ear Antenna Communicator Nodes
-            const earGeo = new THREE.CylinderGeometry(0.28, 0.28, 0.2, 24);
-            earGeo.rotateZ(Math.PI / 2);
-            const leftEar = new THREE.Mesh(earGeo, chromeMat);
-            leftEar.position.set(-1.18, 0.2, 0);
+            // 9. Side Ear-Mounted Audio Communicator Turbines
+            const earTurbineGeo = new THREE.CylinderGeometry(0.38, 0.38, 0.22, 28);
+            earTurbineGeo.rotateZ(Math.PI / 2);
+            
+            const leftEar = new THREE.Mesh(earTurbineGeo, titaniumSilverMat);
+            leftEar.position.set(-1.22, 0.2, 0);
             robot.add(leftEar);
 
-            const rightEar = new THREE.Mesh(earGeo, chromeMat);
-            rightEar.position.set(1.18, 0.2, 0);
+            const leftEarRing = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.03, 16, 32), eyeRingMat);
+            leftEarRing.rotateY(Math.PI / 2);
+            leftEarRing.position.set(-1.34, 0.2, 0);
+            robot.add(leftEarRing);
+
+            const rightEar = new THREE.Mesh(earTurbineGeo, titaniumSilverMat);
+            rightEar.position.set(1.22, 0.2, 0);
             robot.add(rightEar);
 
-            // 7. Mechanical Neck Joints
-            const neckGeo = new THREE.CylinderGeometry(0.65, 0.75, 0.5, 20);
-            const neckMesh = new THREE.Mesh(neckGeo, darkMetalMat);
-            neckMesh.position.set(0, -1.35, 0);
-            robot.add(neckMesh);
+            const rightEarRing = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.03, 16, 32), eyeRingMat);
+            rightEarRing.rotateY(Math.PI / 2);
+            rightEarRing.position.set(1.34, 0.2, 0);
+            robot.add(rightEarRing);
 
-            // 8. Floating Holographic Gyro Orbit Rings
-            const ring1Geo = new THREE.TorusGeometry(1.85, 0.022, 16, 90);
-            const ring1Mat = new THREE.MeshBasicMaterial({ color: 0x1f56f0, transparent: true, opacity: 0.85 });
+            // Dual Cyber Antennas
+            const antennaGeo = new THREE.CylinderGeometry(0.02, 0.035, 0.7, 12);
+            const leftAntenna = new THREE.Mesh(antennaGeo, chromePistonMat);
+            leftAntenna.position.set(-1.18, 0.72, 0);
+            leftAntenna.rotation.z = 0.25;
+            robot.add(leftAntenna);
+
+            const rightAntenna = new THREE.Mesh(antennaGeo, chromePistonMat);
+            rightAntenna.position.set(1.18, 0.72, 0);
+            rightAntenna.rotation.z = -0.25;
+            robot.add(rightAntenna);
+
+            // 10. Segmented Neck & Dual Chrome Hydraulic Pistons
+            const neckCollar = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.85, 0.45, 24), darkCarbonMat);
+            neckCollar.position.set(0, -1.25, 0);
+            robot.add(neckCollar);
+
+            const pistonGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.65, 16);
+            const leftPiston = new THREE.Mesh(pistonGeo, chromePistonMat);
+            leftPiston.position.set(-0.52, -1.35, 0.35);
+            leftPiston.rotation.z = -0.15;
+            robot.add(leftPiston);
+
+            const rightPiston = new THREE.Mesh(pistonGeo, chromePistonMat);
+            rightPiston.position.set(0.52, -1.35, 0.35);
+            rightPiston.rotation.z = 0.15;
+            robot.add(rightPiston);
+
+            // 11. Upper Chest / Collar Chassis Base
+            const chestGeo = new THREE.BoxGeometry(2.1, 0.45, 1.2);
+            const chestMesh = new THREE.Mesh(chestGeo, royalArmourMat);
+            chestMesh.position.set(0, -1.75, 0.1);
+            robot.add(chestMesh);
+
+            // 12. Floating Holographic Gyro Orbit Rings
+            const ring1Geo = new THREE.TorusGeometry(2.1, 0.026, 16, 90);
+            const ring1Mat = new THREE.MeshBasicMaterial({ color: 0x1f56f0, transparent: true, opacity: 0.9 });
             const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
             ring1.rotation.x = Math.PI / 3;
             scene.add(ring1);
 
-            const ring2Geo = new THREE.TorusGeometry(2.3, 0.02, 16, 90);
-            const ring2Mat = new THREE.MeshBasicMaterial({ color: 0x00f5ff, wireframe: true, transparent: true, opacity: 0.65 });
+            const ring2Geo = new THREE.TorusGeometry(2.55, 0.024, 16, 90);
+            const ring2Mat = new THREE.MeshBasicMaterial({ color: 0x00f5ff, wireframe: true, transparent: true, opacity: 0.75 });
             const ring2 = new THREE.Mesh(ring2Geo, ring2Mat);
             ring2.rotation.y = Math.PI / 4;
             scene.add(ring2);
 
-            const ring3Geo = new THREE.TorusGeometry(2.7, 0.015, 16, 100);
-            const ring3Mat = new THREE.MeshBasicMaterial({ color: 0x4f46e5, transparent: true, opacity: 0.4 });
+            const ring3Geo = new THREE.TorusGeometry(2.95, 0.018, 16, 100);
+            const ring3Mat = new THREE.MeshBasicMaterial({ color: 0x6366f1, transparent: true, opacity: 0.45 });
             const ring3 = new THREE.Mesh(ring3Geo, ring3Mat);
             ring3.rotation.z = Math.PI / 6;
             scene.add(ring3);
 
-            // Satellite Data Orb
-            const satGeo = new THREE.IcosahedronGeometry(0.12, 1);
-            const satMat = new THREE.MeshStandardMaterial({ color: 0x00f5ff, emissive: 0x00f5ff, emissiveIntensity: 1.0 });
+            // Orbiting Data Core Satellite
+            const satGeo = new THREE.IcosahedronGeometry(0.14, 1);
+            const satMat = new THREE.MeshStandardMaterial({ color: 0x00f5ff, emissive: 0x00f5ff, emissiveIntensity: 1.5 });
             const satellite = new THREE.Mesh(satGeo, satMat);
             scene.add(satellite);
 
-            // 9. Neural Particle Constellation
+            // 13. Neural Particle Constellation
             const particleCount = 140;
             const particleGeo = new THREE.BufferGeometry();
             const particlePositions = new Float32Array(particleCount * 3);
             for (let i = 0; i < particleCount * 3; i += 3) {
-                const radius = 2.8 + Math.random() * 2.5;
+                const radius = 3.0 + Math.random() * 2.2;
                 const theta = Math.random() * Math.PI * 2;
                 const phi = Math.acos(2 * Math.random() - 1);
                 particlePositions[i] = radius * Math.sin(phi) * Math.cos(theta);
@@ -2442,7 +2551,7 @@
                 particlePositions[i + 2] = radius * Math.cos(phi);
             }
             particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-            const particleMat = new THREE.PointsMaterial({ color: 0x00d4ff, size: 0.045, transparent: true, opacity: 0.7 });
+            const particleMat = new THREE.PointsMaterial({ color: 0x00d4ff, size: 0.048, transparent: true, opacity: 0.75 });
             const particleSystem = new THREE.Points(particleGeo, particleMat);
             scene.add(particleSystem);
 
@@ -2508,10 +2617,10 @@
                 robot.position.y = Math.sin(time * 1.5) * 0.12;
 
                 // Eye sensors micro-movements
-                leftEye.position.x = -0.35 + (mouseX * 0.04);
-                leftEye.position.y = 0.24 + (mouseY * 0.04);
-                rightEye.position.x = 0.35 + (mouseX * 0.04);
-                rightEye.position.y = 0.24 + (mouseY * 0.04);
+                leftPupil.position.x = -0.38 + (mouseX * 0.035);
+                leftPupil.position.y = 0.22 + (mouseY * 0.035);
+                rightPupil.position.x = 0.38 + (mouseX * 0.035);
+                rightPupil.position.y = 0.22 + (mouseY * 0.035);
 
                 // Gyro Rings Rotations
                 ring1.rotation.z += 0.012 * pulseSpeed;
